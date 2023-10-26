@@ -39,18 +39,13 @@ class Controller {
 		}
 		//Menu
 		void lecturaArchivos();
-		void menu();
-		void insertar();
-//		void eliminar();
-		void buscar();
-		void modificar();
 		void reportes();
 		void comprar();
 		void pagar();
 		
 		//Insertar
-		void insertarPais();
-		void insertarCiudad();
+		string insertarPais(int codPais, string nombre);
+		string insertarCiudad(int codPais, int codCiudad, string nombre);
 		void insertarRest();
 		void insertarMenu();
 		void insertarProducto();
@@ -96,11 +91,14 @@ class Controller {
 		//Extra
 		bool desicion(bool bandera);
 		void guardarEnArchivo(string nombreArchivo, string texto);
+		bool isInteger(const string str);
 		
-		ArbolClientes clientes;
-		ArbolAdministradores admin;
+		ArbolClientes getClientes() { return this->clientes; }
+		ArbolAdministradores getAdmin() { return this->admin; }
 
 	private:
+		ArbolClientes clientes;
+		ArbolAdministradores admin;
 		ArbolPais baseDeDatos;
 //		listaClientes clientes; //lista de clientes
 		cola colaClientes;
