@@ -325,6 +325,32 @@ void Controller::insertarCliente() {
 	}
 }
 
+void Controller::insertarAdmin() {
+	system("cls");
+	cout << "****************************** INSERTAR ADMIN ******************************" << endl;
+	cout << endl << "Ingrese la cedula del administrador a agregar: ";
+
+	int cedula;
+	string nombre;
+
+	cin >> cedula;
+	puntero_Administradores Pagina_Administradores = admin.buscarAdministradores(cedula);
+	if (Pagina_Administradores == NULL) {
+		cout << endl << "Ingrese el nombre del administrador a agregar: ";
+		cin.ignore();
+		getline(cin, nombre);
+		admin.inserta(cedula, nombre);
+		system("cls");
+		admin.imprimir_Arbol();
+		cout << endl << endl << "Se ha insertado el administrador." << endl;
+		system("pause");
+	}
+	else {
+		cout << endl << "Este codigo ya se encuentra registrado." << endl;
+		system("pause");
+	}
+}
+
 void Controller::insertar() {
 	bool bandera = true;
 	do {
@@ -337,7 +363,8 @@ void Controller::insertar() {
 		cout << "4. Un menu." << endl;
 		cout << "5. Un producto." << endl;
 		cout << "6. Un cliente." << endl;
-		cout << "7. Salir." << endl;
+		cout << "7. Un administrador." << endl;
+		cout << "8. Salir." << endl;
 		cout << endl << "----> ";
 		int opcion;
 
@@ -363,6 +390,8 @@ void Controller::insertar() {
 			insertarCliente();
 			break;
 		case 7:
+			insertarAdmin();
+		case 8:
 			bandera = false;
 			break;
 		default:
@@ -702,19 +731,29 @@ void Controller::buscarProducto() {
 }
 
 void Controller::buscarClientes() {
-
-	system("cls");
-	cout << "****************************** BUSCAR CLIENTE ******************************" << endl;
-	cout << endl << "Ingrese la cedula del cliente a buscar: ";
 	int cedula;
 	cin >> cedula;
-
 	puntero_Cliente Pagina_Cliente = clientes.buscarCliente(cedula);
 	int indice = Pagina_Cliente->getIndice(cedula);
 	if (Pagina_Cliente != NULL) {
-		system("cls");
 		cout << endl << "		* La cedula del cliente es: " << Pagina_Cliente->getCedula(indice) << endl;
 		cout << endl << "		* El nombre del cliente es: " << Pagina_Cliente->getNombre(indice) << endl << endl;
+		system("pause");
+	}
+	else {
+		cout << endl << "Este codigo no se encuentra registrado." << endl;
+		system("pause");
+	}
+}
+
+void Controller::buscarAdmin() {
+	int cedula;
+	cin >> cedula;
+	puntero_Administradores Pagina_Administradores = admin.buscarAdministradores(cedula);
+	int indice = Pagina_Administradores->getIndice(cedula);
+	if (Pagina_Administradores != NULL) {
+		cout << endl << "		* La cedula del cliente es: " << Pagina_Administradores->getCedula(indice) << endl;
+		cout << endl << "		* El nombre del cliente es: " << Pagina_Administradores->getNombre(indice) << endl << endl;
 		system("pause");
 	}
 	else {
@@ -735,7 +774,8 @@ void Controller::buscar() {
 		cout << "4. Un menu." << endl;
 		cout << "5. Un producto." << endl;
 		cout << "6. Un cliente." << endl;
-		cout << "7. Salir." << endl;
+		cout << "7. Un administrador." << endl;
+		cout << "8. Salir." << endl;
 		cout << endl << "----> ";
 		int opcion;
 
@@ -761,6 +801,9 @@ void Controller::buscar() {
 			buscarClientes();
 			break;
 		case 7:
+			buscarAdmin();
+			break;
+		case 8:
 			bandera = false;
 			break;
 		default:
@@ -1144,6 +1187,34 @@ void Controller::modificarCliente() {
 	}
 }
 
+void Controller::modificarAdmin() {
+
+	system("cls");
+	cout << "****************************** MODIFICAR ADMINISTRADOR ******************************" << endl;
+	admin.imprimir_Arbol();
+	cout << endl << "Ingrese la cedula del administrador a modificar: ";
+	int cedula;
+	cin >> cedula;
+	puntero_Administradores Pagina_Administradores = admin.buscarAdministradores(cedula);
+	int indice = Pagina_Administradores->getIndice(cedula);
+	if (Pagina_Administradores != NULL) {
+		system("cls");
+		cout << endl << "Ingrese el nuevo nombre del administrador: ";
+		string nombre;
+		cin.ignore();
+		getline(cin, nombre);
+		Pagina_Administradores->setNombre(indice, nombre);
+		system("cls");
+		admin.imprimir_Arbol();
+		cout << endl << endl << "Se ha modificado el administrador." << endl;
+		system("pause");
+	}
+	else {
+		cout << endl << "Este codigo no se encuentra registrado." << endl;
+		system("pause");
+	}
+}
+
 void Controller::modificarCompra() {
 	system("cls");
 	cout << "****************************** MODIFICAR COMPRA ******************************" << endl;
@@ -1386,8 +1457,9 @@ void Controller::modificar() {
 		cout << "4. Un menu." << endl;
 		cout << "5. Un producto." << endl;
 		cout << "6. Un cliente." << endl;
-		cout << "7. Una compra" << endl;
-		cout << "8. Salir." << endl;
+		cout << "7. Un administrador." << endl;
+		cout << "8. Una compra" << endl;
+		cout << "9. Salir." << endl;
 		cout << endl << "----> ";
 		int opcion;
 
@@ -1413,9 +1485,12 @@ void Controller::modificar() {
 			modificarCliente();
 			break;
 		case 7:
-			modificarCompra();
+			modificarAdmin();
 			break;
 		case 8:
+			modificarCompra();
+			break;
+		case 9:
 			bandera = false;
 			break;
 		default:

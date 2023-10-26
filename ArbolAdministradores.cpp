@@ -393,7 +393,7 @@ void ArbolAdministradores::agregar_Datos_lectura(string& pDatosLinea)
 
 void ArbolAdministradores::leerDocAdministradores()
 {
-	string nombreArchivo = ".txt";
+	string nombreArchivo = "Administradores.txt";
 	ifstream file(nombreArchivo.c_str());
 	string linea;
 

@@ -5,6 +5,7 @@
 #include <iostream>
 #include "ArbolPais.h"
 #include "ArbolClientes.h"
+#include "ArbolAdministradores.h"
 #include "cola.h"
 #include <cstdlib>
 #include <string.h>
@@ -25,6 +26,7 @@ class Controller {
 			baseDeDatos.leeDocMenu();
 			baseDeDatos.leeDocProducto();
 			clientes.leerDocCliente();
+			admin.leerDocAdministradores();
 
 			this->descuento = 3;
 			this->facturas = 0;
@@ -53,6 +55,7 @@ class Controller {
 		void insertarMenu();
 		void insertarProducto();
 		void insertarCliente();
+		void insertarAdmin();
 		
 		//Buscar
 		void buscarPais();
@@ -61,6 +64,7 @@ class Controller {
 		void buscarMenu();
 		void buscarProducto();
 		void buscarClientes();
+		void buscarAdmin();
 		
 		//Modificar
 		void modificarPais();
@@ -70,6 +74,7 @@ class Controller {
 		void modificarProducto();
 		void modificarCliente();
 		void modificarCompra();
+		void modificarAdmin();
 		
 		//Reportes
 		void reportarPais();
@@ -92,10 +97,11 @@ class Controller {
 		bool desicion(bool bandera);
 		void guardarEnArchivo(string nombreArchivo, string texto);
 		
+		ArbolClientes clientes;
+		ArbolAdministradores admin;
 
 	private:
 		ArbolPais baseDeDatos;
-		ArbolClientes clientes;
 //		listaClientes clientes; //lista de clientes
 		cola colaClientes;
 		cola listaClientes;
@@ -107,6 +113,9 @@ class Controller {
 		string menorFacturastring;
 		string mayorFacturastring;
 		pnodoProducto productomasComp;
+
+		friend class MyForm;
 };
+
 
 
