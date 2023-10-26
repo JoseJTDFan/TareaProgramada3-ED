@@ -1,68 +1,33 @@
 #include "Controller.h"
 
-void Controller::insertarPais() {
-	system("cls");
-	cout << "****************************** INSERTAR PAIS ******************************" << endl;
-	cout << endl << "Ingrese el codigo del pais a agregar: ";
+string Controller::insertarPais(int codPais, string nombre) {
 
-	int codPais;
-	string nombre;
-
-	cin >> codPais;
 	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
 	if (nodoPais == NULL) {
-		cout << endl << "Ingrese el nombre del pais a agregar: ";
-		cin.ignore();
-		getline(cin, nombre);
 		baseDeDatos.insertPais(codPais, nombre);
-		system("cls");
-		cout << baseDeDatos.imprimir_Pais();
-		cout << endl << endl << "Se ha insertado el pais." << endl;
-		system("pause");
+
+		return "Se ha insertado el pais.";
 	}
 	else {
-		cout << endl << "Este codigo ya se encuentra registrado." << endl;
-		system("pause");
+		return "Este pais ya se encuentra registrado.";
 	}
 }
 
-void Controller::insertarCiudad() {
-	system("cls");
-	cout << "****************************** INSERTAR CIUDAD ******************************" << endl << endl;
-	cout << baseDeDatos.imprimir_Pais();
-	cout << endl << endl << "Ingrese el codigo del pais que quiere insertar una ciudad: ";
-
-	int codPais;
-	string nombre;
-	cin >> codPais;
-	cout << endl;
+string Controller::insertarCiudad(int codPais,int codCiudad, string nombre) {
 
 	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
 	if (nodoPais == NULL) {
-		cout << endl << "Pais Invalido o No Registrado" << endl;
-		system("pause");
-		return;
-	}
-	system("cls");
-	cout << endl << "Ingrese el codigo de la ciudad a agregar: ";
-	int codCiudad;
-	cin >> codCiudad;
+		return "Pais Invalido o No Registrado";
 
+	}
 	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
 	if (nodoCiudad == NULL) {
-		cout << endl << "Ingrese el nombre de la ciudad a agregar: ";
-		cin.ignore();
-		getline(cin, nombre);
+		
 		baseDeDatos.insertCiudad(codPais, codCiudad, nombre);
-		system("cls");
-		cout << baseDeDatos.imprimir_Ciudad(codPais);
-		cout << endl << endl << "Se ha insertado la ciudad." << endl;
-		system("pause");
+		return "Se ha insertado la ciudad.";
 	}
 	else {
-		cout << endl << "Este codigo ya se encuentra registrado." << endl;
-		system("pause");
-		return;
+		return "Esta ciudad ya se encuentra registrada.";
 	}
 }
 
@@ -351,57 +316,6 @@ void Controller::insertarAdmin() {
 	}
 }
 
-void Controller::insertar() {
-	bool bandera = true;
-	do {
-		system("cls");
-		cout << "****************************** INSERTAR ******************************" << endl;
-		cout << endl << "Ingrese que desea insertar" << endl << endl;
-		cout << "1. Un pais." << endl;
-		cout << "2. Una ciudad." << endl;
-		cout << "3. Un restaurante." << endl;
-		cout << "4. Un menu." << endl;
-		cout << "5. Un producto." << endl;
-		cout << "6. Un cliente." << endl;
-		cout << "7. Un administrador." << endl;
-		cout << "8. Salir." << endl;
-		cout << endl << "----> ";
-		int opcion;
-
-		cin >> opcion;
-		cout << endl;
-		switch (opcion) {
-		case 1:
-			insertarPais();
-			break;
-		case 2:
-			insertarCiudad();
-			break;
-		case 3:
-			insertarRest();
-			break;
-		case 4:
-			insertarMenu();
-			break;
-		case 5:
-			insertarProducto();
-			break;
-		case 6:
-			insertarCliente();
-			break;
-		case 7:
-			insertarAdmin();
-		case 8:
-			bandera = false;
-			break;
-		default:
-			cout << "Ingrese un numero valido" << endl;
-			system("pause");
-			break;
-		}
-	} while (bandera);
-
-}
 
 void Controller::buscarPais() {
 
@@ -762,58 +676,6 @@ void Controller::buscarAdmin() {
 	}
 }
 
-void Controller::buscar() {
-	bool bandera = true;
-	do {
-		system("cls");
-		cout << "****************************** BUSCAR ******************************" << endl;
-		cout << endl << "Ingrese que desea buscar" << endl << endl;
-		cout << "1. Un pais." << endl;
-		cout << "2. Una ciudad." << endl;
-		cout << "3. Un restaurante." << endl;
-		cout << "4. Un menu." << endl;
-		cout << "5. Un producto." << endl;
-		cout << "6. Un cliente." << endl;
-		cout << "7. Un administrador." << endl;
-		cout << "8. Salir." << endl;
-		cout << endl << "----> ";
-		int opcion;
-
-		cin >> opcion;
-		cout << endl;
-		switch (opcion) {
-		case 1:
-			buscarPais();
-			break;
-		case 2:
-			buscarCiudad();
-			break;
-		case 3:
-			buscarRest();
-			break;
-		case 4:
-			buscarMenu();
-			break;
-		case 5:
-			buscarProducto();
-			break;
-		case 6:
-			buscarClientes();
-			break;
-		case 7:
-			buscarAdmin();
-			break;
-		case 8:
-			bandera = false;
-			break;
-		default:
-			cout << "Ingrese un numero valido" << endl;
-			system("pause");
-			break;
-		}
-	} while (bandera);
-
-}
 
 void Controller::modificarPais() {
 
@@ -1445,61 +1307,6 @@ void Controller::modificarCompra() {
 	} while (bandera == true);
 }
 
-void Controller::modificar() {
-	bool bandera = true;
-	do {
-		system("cls");
-		cout << "****************************** MODIFICAR ******************************" << endl;
-		cout << endl << "Ingrese que desea modificar" << endl << endl;
-		cout << "1. Un pais." << endl;
-		cout << "2. Una ciudad." << endl;
-		cout << "3. Un restaurante." << endl;
-		cout << "4. Un menu." << endl;
-		cout << "5. Un producto." << endl;
-		cout << "6. Un cliente." << endl;
-		cout << "7. Un administrador." << endl;
-		cout << "8. Una compra" << endl;
-		cout << "9. Salir." << endl;
-		cout << endl << "----> ";
-		int opcion;
-
-		cin >> opcion;
-		cout << endl;
-		switch (opcion) {
-		case 1:
-			modificarPais();
-			break;
-		case 2:
-			modificarCiudad();
-			break;
-		case 3:
-			modificarRest();
-			break;
-		case 4:
-			modificarMenu();
-			break;
-		case 5:
-			modificarProducto();
-			break;
-		case 6:
-			modificarCliente();
-			break;
-		case 7:
-			modificarAdmin();
-			break;
-		case 8:
-			modificarCompra();
-			break;
-		case 9:
-			bandera = false;
-			break;
-		default:
-			cout << "Ingrese un numero valido" << endl;
-			system("pause");
-			break;
-		}
-	} while (bandera);
-}
 
 bool Controller::desicion(bool bandera) {
 	bool bandera2 = true;
@@ -2416,58 +2223,15 @@ void Controller::reportes() {
 	} while (bandera);
 }
 
-void Controller::menu() {
-	bool bandera = true;
-	do {
-		system("cls");
-		cout << "			       $$$    $$$" << endl;
-		cout << "			      $   $  $   $" << endl;
-		cout << "			     $     $$     $" << endl;
-		cout << "		   	    $$     $$     $$" << endl;
-		cout << "			    $$     $$     $$" << endl;
-		cout << "			    $$     $$     $$" << endl;
-		cout << "****************************** MC'DONALD'S ******************************" << endl;
-		cout << endl << "¡Bienvenido a la base de datos de McDonald's! ¿Que desea realizar?" << endl << endl;
-		cout << "1. Insertar." << endl;
-		cout << "2. Buscar." << endl;
-		cout << "3. Modificar" << endl;
-		cout << "4. Registrar Compra" << endl;
-		cout << "5. Pagar" << endl;
-		cout << "6. Reportar" << endl;
-		cout << "7. Salir" << endl;
-		cout << endl << "----> ";
-		int opcion;
-		cin >> opcion;
-		cout << endl;
-		switch (opcion) {
-		case 1:
-			insertar();
-			menu();
-			break;
-		case 2:
-			buscar();
-			break;
-		case 3:
-			modificar();
-			break;
-		case 4:
-			comprar();
-			break;
-		case 5:
-			pagar();
-			break;
-		case 6:
-			reportes();
-			break;
-		case 7:
-			bandera = false;
-			break;
-		default:
-			cout << "Ingrese un numero valido" << endl;
-			system("pause");
-			break;
-		}
-	} while (bandera);
-
-
+bool Controller::isInteger(const string str) {
+	try {
+		stoi(str);
+		return true;
+	}
+	catch (const invalid_argument& e) {
+		return false;
+	}
+	catch (const out_of_range& e) {
+		return false;
+	}
 }
