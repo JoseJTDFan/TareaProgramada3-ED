@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArbolAdministradores.cpp" />
     <ClCompile Include="ArbolClientes.cpp" />
     <ClCompile Include="ArbolPais.cpp" />
     <ClCompile Include="cola.cpp" />
@@ -26,6 +27,7 @@
     <ClCompile Include="listaProductos.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="NodoAdministradores.cpp" />
     <ClCompile Include="NodoCiudad.cpp" />
     <ClCompile Include="NodoClientes.cpp" />
     <ClCompile Include="NodoFila.cpp" />
@@ -37,12 +39,14 @@
     <ClCompile Include="NodoRest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArbolAdministradores.h" />
     <ClInclude Include="ArbolClientes.h" />
     <ClInclude Include="ArbolPais.h" />
     <ClInclude Include="cola.h" />
     <ClInclude Include="lista.h" />
     <ClInclude Include="listaProductos.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="NodoAdministradores.h" />
     <ClInclude Include="NodoCiudad.h" />
     <ClInclude Include="NodoClientes.h" />
     <ClInclude Include="NodoFila.h" />
