@@ -40,22 +40,22 @@ class Controller {
 		//Menu
 		void lecturaArchivos();
 		void reportes();
-		void comprar();
+		string comprar(int cedula, int codPais, int codCiudad, int codRest, int codMenu, int codProd, int cantidad, int lugar);
 		void pagar();
 		
 		//Insertar
 		string insertarPais(int codPais, string nombre);
 		string insertarCiudad(int codPais, int codCiudad, string nombre);
-		void insertarRest();
-		void insertarMenu();
-		void insertarProducto();
-		void insertarCliente();
-		void insertarAdmin();
+		string insertarRest(int codPais, int codCiudad, int codRest, string nombre);
+		string insertarMenu(int codPais, int codCiudad, int codRest, int codMenu, string nombre);
+		string insertarProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd, string nombre, int kcal, int precio, int cantidad);
+		string insertarCliente(int cedula, string nombre);
+		string insertarAdmin(int cedula, string nombre);
 		
 		//Buscar
-		void buscarPais();
-		void buscarCiudad();
-		void buscarRest();
+		string buscarPais(int codPais);
+		string buscarCiudad(int codPais, int codCiudad);
+		string buscarRest(int codPais, int codCiudad, int codRest);
 		void buscarMenu();
 		void buscarProducto();
 		void buscarClientes();
