@@ -256,73 +256,35 @@ string Controller::buscarRest(int codPais, int codCiudad, int codRest) {
 
 }
 
-void Controller::buscarMenu() {
-	system("cls");
-	cout << "****************************** BUSCAR MENU ******************************" << endl << endl;
-	cout << baseDeDatos.imprimir_Pais();
-	cout << endl << endl << "Ingrese el codigo del pais en el que quiere buscar un menu: ";
-
-	int codPais;
-	cin >> codPais;
-	cout << endl;
+string Controller::buscarMenu(int codPais, int codCiudad, int codRest, int codMenu) {
+	string busqueda;
 
 	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
 	if (nodoPais == NULL) {
-		cout << endl << "Pais Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Pais Invalido o No Registrado";
 	}
 	if (nodoPais->getCiudad() == NULL) {
-		cout << endl << "No hay ciudades registradas." << endl;
-		system("pause");
-		return;
+		return "No hay ciudades registradas.";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Ciudad(codPais);
-
-	cout << endl << endl << "Ingrese el codigo de la ciudad en el que quiere buscar un menu: ";
-	int codCiudad;
-	cin >> codCiudad;
+	
 	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
 	if (nodoCiudad == NULL) {
-		cout << endl << "Ciudad Invalida o No Registrada" << endl;
-		system("pause");
-		return;
+		return "Ciudad Invalida o No Registrada";
 	}
 	if (nodoCiudad->getRest() == NULL) {
-		cout << endl << "No hay restaurantes registrados." << endl;
-		system("pause");
-		return;
+		return "No hay restaurantes registrados.";
 	}
 
-	system("cls");
-	cout << baseDeDatos.imprimir_Rest(codPais, codCiudad);
-
-	cout << endl << endl << "Ingrese el codigo del restaurante en el que quiere buscar un menu: ";
-	int codRest;
-	cin >> codRest;
 	pnodoRest nodoRest = baseDeDatos.buscarRest(codPais, codCiudad, codRest);
 	if (nodoRest == NULL) {
-		cout << endl << "Restaurante Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Restaurante Invalido o No Registrado";
 	}
 	if (nodoRest->getMenu() == NULL) {
-		cout << endl << "No hay menus registrados." << endl;
-		system("pause");
-		return;
+		return "No hay menus registrados.";
 	}
-
-	system("cls");
-	//nodoRest->menus.Mostrar();
-	cout << endl << "Ingrese el codigo del menu a buscar: ";
-	int codMenu;
-	cin >> codMenu;
-
 
 	pnodoMenu nodoMenu = baseDeDatos.buscarMenu(codPais, codCiudad, codRest, codMenu);
 	if (nodoMenu != NULL) {
-		system("cls");
 		pnodoM menus = listas.buscar(codPais, codCiudad, codRest, codMenu);
 		if (menus == NULL) {
 			listas.InsertarInicio(codPais, codCiudad, codRest, codMenu, nodoMenu->getNombre(), 1);
@@ -330,18 +292,21 @@ void Controller::buscarMenu() {
 		else {
 			menus->cantidad++;
 		}
-		cout << endl << "		* El codigo de pais del menu es: " << nodoMenu->getcodPais() << endl;
-		cout << endl << "		* El codigo de ciudad del menu es: " << nodoMenu->getcodCiudad() << endl;
-		cout << endl << "		* El codigo de restaurante del menu es: " << nodoMenu->getcodRest() << endl;
-		cout << endl << "		* El codigo del menu es: " << nodoMenu->getcodMenu() << endl;
-		cout << endl << "		* El nombre del menu es: " << nodoMenu->getNombre() << endl << endl;
-		system("pause");
+		busqueda += "\nCodigo de pais: ";
+		busqueda += to_string(nodoMenu->getcodPais());
+		busqueda += "\nCodigo de la ciudad: ";
+		busqueda += to_string(nodoMenu->getcodCiudad());
+		busqueda += "\nCodigo del restaurante: ";
+		busqueda += to_string(nodoMenu->getcodRest());
+		busqueda += "\nCodigo del menu: ";
+		busqueda += to_string(nodoMenu->getcodMenu());
+		busqueda += "\nNombre de la ciudad: ";
+		busqueda += nodoMenu->getNombre();
 	}
 	else {
-		cout << endl << "Este codigo no se encuentra registrado." << endl;
-		system("pause");
-		return;
+		return "Este codigo no se encuentra registrado.";
 	}
+	return busqueda;
 }
 
 void Controller::buscarProducto() {
@@ -1153,21 +1118,31 @@ string Controller::comprar(int cedula,int codPais, int codCiudad, int codRest, i
 
 	if (nodoClientes != NULL) {
 
-		if (colaClientes.ListaVacia()==false && colaClientes.primero->cedula != cedula && colaClientes.buscar(cedula) != NULL) {
-			return "El cliente ya esta en la cola.";
+		if (colaClientes.ListaVacia() == false) {
+			if (colaClientes.primero->cedula != cedula && colaClientes.buscar(cedula) != NULL) {
+				return "El cliente ya esta en la cola.";
+			}
+
+			if (colaClientes.primero->cedula == cedula) {
+				clienteNodo = colaClientes.buscar(cedula);
+				banderaCompro = true;
+			}
+			else {
+				listaProductos productos;
+				int indice = nodoClientes->getIndice(cedula);
+				clienteNodo = new NodoFila();
+				clienteNodo->cedula = cedula;
+				clienteNodo->nombreCliente = nodoClientes->getNombre(indice);
+			}
 		}
-	
-		if (colaClientes.primero->cedula == cedula) {
-			clienteNodo = colaClientes.buscar(cedula);
-			banderaCompro = true;
-		}
-		else{
+		else {
 			listaProductos productos;
 			int indice = nodoClientes->getIndice(cedula);
 			clienteNodo = new NodoFila();
 			clienteNodo->cedula = cedula;
 			clienteNodo->nombreCliente = nodoClientes->getNombre(indice);
 		}
+		
 		
 			
 		pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
@@ -1217,8 +1192,6 @@ string Controller::comprar(int cedula,int codPais, int codCiudad, int codRest, i
 				}
 
 				//						clienteNodo->
-				clienteNodo->productos.MostrarCompra();
-				return "Se ha insertado el producto a su carrito.";
 				//						if(banderaCompra==false){
 				//							
 				//						}
@@ -1236,7 +1209,6 @@ string Controller::comprar(int cedula,int codPais, int codCiudad, int codRest, i
 		if (banderaCompro == false) {
 			colaClientes.InsertarFinal(clienteNodo);
 		}
-		colaClientes.imprimir();
 
 		pnodoFila nodoCompra = listaClientes.buscar(cedula);
 		if (nodoCompra == NULL) {
@@ -1245,6 +1217,7 @@ string Controller::comprar(int cedula,int codPais, int codCiudad, int codRest, i
 		else {
 			nodoCompra->lugar++;
 		}
+		return colaClientes.imprimir();
 		
 	}
 	else {

@@ -21,7 +21,7 @@ class listaProductos {
     void BorrarPosicion(int pos);
     void Mostrar();
     void MostrarReportePrecio();
-    void MostrarCompra();
+    string MostrarCompra();
     int largoLista();
     int getPosicion(int codigo);
     string getNombreProducto(int pos);

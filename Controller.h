@@ -56,7 +56,7 @@ class Controller {
 		string buscarPais(int codPais);
 		string buscarCiudad(int codPais, int codCiudad);
 		string buscarRest(int codPais, int codCiudad, int codRest);
-		void buscarMenu();
+		string buscarMenu(int codPais, int codCiudad, int codRest, int codMenu);
 		void buscarProducto();
 		void buscarClientes();
 		void buscarAdmin();
@@ -95,6 +95,7 @@ class Controller {
 		
 		ArbolClientes getClientes() { return this->clientes; }
 		ArbolAdministradores getAdmin() { return this->admin; }
+		cola getColaClientes() { return this->colaClientes; }
 
 	private:
 		ArbolClientes clientes;

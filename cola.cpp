@@ -216,25 +216,33 @@ void cola:: borrarPosicion(int pos){
 }
  
 
-void cola::imprimir()
+string cola::imprimir()
 {
+    string res;
    NodoFila *aux = primero;
    if (primero== NULL)
-       return;
+       return "Cola Vacía";
    else
    {
    		while(aux){
    			 if (aux->lugar==1){
-			cout<<aux->cedula<<" -> "<<aux->nombreCliente<<" -> Para llevar."<<endl;
+                 res += to_string(aux->cedula);
+                 res += " -> ";
+                 res += aux->nombreCliente;
+                 res += " -> Para llevar.\n";
 			}
 			else{
-				cout<<aux->cedula<<" -> "<<aux->nombreCliente<<" -> Para comer dentro."<<endl;
+                 res += to_string(aux->cedula);
+                 res += " -> ";
+                 res += aux->nombreCliente;
+                 res += " -> Para comer dentro.\n";
 			}
-	        aux->productos.MostrarCompra();
+             res += aux->productos.MostrarCompra();
 	        aux=aux->siguiente;
 		}
   		
    }
+   return res;
 }
 
 pnodoFila cola::buscar(int cedula)
