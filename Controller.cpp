@@ -246,7 +246,7 @@ string Controller::buscarRest(int codPais, int codCiudad, int codRest) {
 		busqueda += to_string(nodoRest->getcodCiudad());
 		busqueda += "\nCodigo del restaurante: ";
 		busqueda += to_string(nodoRest->getcodRest());
-		busqueda += "\nNombre de la ciudad: ";
+		busqueda += "\nNombre del restaurante: ";
 		busqueda += nodoRest->getnombre();
 		return busqueda;
 	}
@@ -300,7 +300,7 @@ string Controller::buscarMenu(int codPais, int codCiudad, int codRest, int codMe
 		busqueda += to_string(nodoMenu->getcodRest());
 		busqueda += "\nCodigo del menu: ";
 		busqueda += to_string(nodoMenu->getcodMenu());
-		busqueda += "\nNombre de la ciudad: ";
+		busqueda += "\nNombre del menu: ";
 		busqueda += nodoMenu->getNombre();
 	}
 	else {
@@ -309,140 +309,102 @@ string Controller::buscarMenu(int codPais, int codCiudad, int codRest, int codMe
 	return busqueda;
 }
 
-void Controller::buscarProducto() {
-	system("cls");
-	cout << "****************************** BUSCAR PRODUCTO ******************************" << endl << endl;
-	cout << baseDeDatos.imprimir_Pais();
-	cout << endl << endl << "Ingrese el codigo del pais en el que quiere buscar un producto: ";
-
-	int codPais;
-	cin >> codPais;
-	cout << endl;
+string Controller::buscarProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd) {
+	string busqueda = "";
 
 	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
 	if (nodoPais == NULL) {
-		cout << endl << "Pais Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Pais Invalido o No Registrado";
+
 	}
 	if (nodoPais->getCiudad() == NULL) {
-		cout << endl << "No hay ciudades registradas." << endl;
-		system("pause");
-		return;
+		return "No hay ciudades registradas.";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Ciudad(codPais);
 
-	cout << endl << endl << "Ingrese el codigo de la ciudad en el que quiere buscar un producto: ";
-	int codCiudad;
-	cin >> codCiudad;
 	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
 	if (nodoCiudad == NULL) {
-		cout << endl << "Ciudad Invalida o No Registrada" << endl;
-		system("pause");
-		return;
+		return "Ciudad Invalida o No Registrada";
 	}
 	if (nodoCiudad->getRest() == NULL) {
-		cout << endl << "No hay restaurantes registrados." << endl;
-		system("pause");
-		return;
+		return "No hay restaurantes registrados.";
 	}
 
-	system("cls");
-	cout << baseDeDatos.imprimir_Rest(codPais, codCiudad);
-
-	cout << endl << endl << "Ingrese el codigo del restaurante en el que quiere buscar un producto: ";
-	int codRest;
-	cin >> codRest;
 	pnodoRest nodoRest = baseDeDatos.buscarRest(codPais, codCiudad, codRest);
 	if (nodoRest == NULL) {
-		cout << endl << "Restaurante Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Restaurante Invalido o No Registrado";
 	}
 	if (nodoRest->getMenu() == NULL) {
-		cout << endl << "No hay menus registrados." << endl;
-		system("pause");
-		return;
+		return "No hay menus registrados.";
 	}
 
-	system("cls");
-	cout << baseDeDatos.imprimir_Menu(codPais, codCiudad, codRest);
-
-	cout << endl << endl << "Ingrese el codigo del menu en el que quiere buscar un producto: ";
-	int codMenu;
-	cin >> codMenu;
 	pnodoMenu nodoMenu = baseDeDatos.buscarMenu(codPais, codCiudad, codRest, codMenu);
 	if (nodoMenu == NULL) {
-		cout << endl << "Menu Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Menu Invalido o No Registrado";
 	}
 	if (nodoMenu->getdirProducto() == NULL) {
-		cout << endl << "No hay productos registrados." << endl;
-		system("pause");
-		return;
+		return "No hay productos registrados.";
 	}
-
-
-	system("cls");
-	//nodoMenu->productos.Mostrar();
-	cout << endl << "Ingrese el codigo del producto a buscar: ";
-	int codProd;
-	cin >> codProd;
-
 
 	pnodoProducto nodoProd = baseDeDatos.buscarProducto(codPais, codCiudad, codRest, codMenu, codProd);
 	if (nodoProd != NULL) {
-		system("cls");
-		cout << endl << "		* El codigo de pais del producto es: " << nodoProd->getcodPais() << endl;
-		cout << endl << "		* El codigo de ciudad del producto es: " << nodoProd->getcodCiudad() << endl;
-		cout << endl << "		* El codigo de restaurante del producto es: " << nodoProd->getcodRest() << endl;
-		cout << endl << "		* El codigo de menu del producto es: " << nodoProd->getcodMenu() << endl;
-		cout << endl << "		* El codigo  del producto es: " << nodoProd->getcodProducto() << endl;
-		cout << endl << "		* El nombre del producto es: " << nodoProd->getNombre() << endl;
-		cout << endl << "		* Las calorias del producto son: " << nodoProd->getkcal() << endl;
-		cout << endl << "		* El precio del producto es: " << nodoProd->getprecio() << endl;
-		cout << endl << "		* La cantidad del producto es: " << nodoProd->getcantidad() << endl << endl;
-		system("pause");
+		busqueda += "\nCodigo de pais: ";
+		busqueda += to_string(nodoProd->getcodPais());
+		busqueda += "\nCodigo de la ciudad: ";
+		busqueda += to_string(nodoProd->getcodCiudad());
+		busqueda += "\nCodigo del restaurante: ";
+		busqueda += to_string(nodoProd->getcodRest());
+		busqueda += "\nCodigo del menu: ";
+		busqueda += to_string(nodoProd->getcodMenu());
+		busqueda += "\nCodigo del producto: ";
+		busqueda += to_string(nodoProd->getcodProducto());
+		busqueda += "\nNombre del producto: ";
+		busqueda += nodoProd->getNombre();
+		busqueda += "\nCalorias del producto: ";
+		busqueda += to_string(nodoProd->getkcal());
+		busqueda += "\nPrecio del producto: ";
+		busqueda += to_string(nodoProd->getprecio());
+		busqueda += "\nCantidad del producto: ";
+		busqueda += to_string(nodoProd->getcantidad());
+		
 	}
 	else {
-		cout << endl << "Este codigo no se encuentra registrado." << endl;
-		system("pause");
-		return;
+		return "Este codigo no se encuentra registrado.";
 	}
+	return busqueda;
 }
 
-void Controller::buscarClientes() {
-	int cedula;
-	cin >> cedula;
+string Controller::buscarClientes(int cedula) {
+	string busqueda = "";
+
 	puntero_Cliente Pagina_Cliente = clientes.buscarCliente(cedula);
 	int indice = Pagina_Cliente->getIndice(cedula);
 	if (Pagina_Cliente != NULL) {
-		cout << endl << "		* La cedula del cliente es: " << Pagina_Cliente->getCedula(indice) << endl;
-		cout << endl << "		* El nombre del cliente es: " << Pagina_Cliente->getNombre(indice) << endl << endl;
-		system("pause");
+		busqueda += "\nCedula del cliente: ";
+		busqueda += to_string(Pagina_Cliente->getCedula(indice));
+		busqueda += "\nNombre del cliente : ";
+		busqueda += Pagina_Cliente->getNombre(indice);
 	}
 	else {
-		cout << endl << "Este codigo no se encuentra registrado." << endl;
-		system("pause");
+		return "Este codigo no se encuentra registrado.";
 	}
+	return busqueda;
 }
 
-void Controller::buscarAdmin() {
-	int cedula;
-	cin >> cedula;
+string Controller::buscarAdmin(int cedula) {
+	string busqueda = "";
+
 	puntero_Administradores Pagina_Administradores = admin.buscarAdministradores(cedula);
 	int indice = Pagina_Administradores->getIndice(cedula);
 	if (Pagina_Administradores != NULL) {
-		cout << endl << "		* La cedula del cliente es: " << Pagina_Administradores->getCedula(indice) << endl;
-		cout << endl << "		* El nombre del cliente es: " << Pagina_Administradores->getNombre(indice) << endl << endl;
-		system("pause");
+		busqueda += "\nCedula del administrador: ";
+		busqueda += to_string(Pagina_Administradores->getCedula(indice));
+		busqueda += "\nNombre del administrador : ";
+		busqueda += Pagina_Administradores->getNombre(indice);
 	}
 	else {
-		cout << endl << "Este codigo no se encuentra registrado." << endl;
-		system("pause");
+		return "Este codigo no se encuentra registrado.";
 	}
+	return busqueda;
 }
 
 

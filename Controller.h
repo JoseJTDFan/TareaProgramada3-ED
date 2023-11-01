@@ -57,9 +57,9 @@ class Controller {
 		string buscarCiudad(int codPais, int codCiudad);
 		string buscarRest(int codPais, int codCiudad, int codRest);
 		string buscarMenu(int codPais, int codCiudad, int codRest, int codMenu);
-		void buscarProducto();
-		void buscarClientes();
-		void buscarAdmin();
+		string buscarProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd);
+		string buscarClientes(int cedula);
+		string buscarAdmin(int cedula);
 		
 		//Modificar
 		void modificarPais();
