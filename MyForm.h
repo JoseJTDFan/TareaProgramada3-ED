@@ -330,56 +330,56 @@ private: System::Windows::Forms::ToolStripMenuItem^ paisToolStripMenuItem;
 			// paísToolStripMenuItem
 			// 
 			this->paísToolStripMenuItem->Name = L"paísToolStripMenuItem";
-			this->paísToolStripMenuItem->Size = System::Drawing::Size(228, 34);
+			this->paísToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 			this->paísToolStripMenuItem->Text = L"País";
 			this->paísToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::paísToolStripMenuItem_Click);
 			// 
 			// ciudadToolStripMenuItem
 			// 
 			this->ciudadToolStripMenuItem->Name = L"ciudadToolStripMenuItem";
-			this->ciudadToolStripMenuItem->Size = System::Drawing::Size(228, 34);
+			this->ciudadToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 			this->ciudadToolStripMenuItem->Text = L"Ciudad";
 			this->ciudadToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ciudadToolStripMenuItem_Click);
 			// 
 			// restauranteToolStripMenuItem
 			// 
 			this->restauranteToolStripMenuItem->Name = L"restauranteToolStripMenuItem";
-			this->restauranteToolStripMenuItem->Size = System::Drawing::Size(228, 34);
+			this->restauranteToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 			this->restauranteToolStripMenuItem->Text = L"Restaurante";
 			this->restauranteToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::restauranteToolStripMenuItem_Click);
 			// 
 			// menúToolStripMenuItem
 			// 
 			this->menúToolStripMenuItem->Name = L"menúToolStripMenuItem";
-			this->menúToolStripMenuItem->Size = System::Drawing::Size(228, 34);
+			this->menúToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 			this->menúToolStripMenuItem->Text = L"Menú";
 			this->menúToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::menúToolStripMenuItem_Click);
 			// 
 			// productoToolStripMenuItem
 			// 
 			this->productoToolStripMenuItem->Name = L"productoToolStripMenuItem";
-			this->productoToolStripMenuItem->Size = System::Drawing::Size(228, 34);
+			this->productoToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 			this->productoToolStripMenuItem->Text = L"Producto";
 			this->productoToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::productoToolStripMenuItem_Click);
 			// 
 			// clienteToolStripMenuItem
 			// 
 			this->clienteToolStripMenuItem->Name = L"clienteToolStripMenuItem";
-			this->clienteToolStripMenuItem->Size = System::Drawing::Size(228, 34);
+			this->clienteToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 			this->clienteToolStripMenuItem->Text = L"Cliente";
 			this->clienteToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::clienteToolStripMenuItem_Click);
 			// 
 			// administradorToolStripMenuItem
 			// 
 			this->administradorToolStripMenuItem->Name = L"administradorToolStripMenuItem";
-			this->administradorToolStripMenuItem->Size = System::Drawing::Size(228, 34);
+			this->administradorToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 			this->administradorToolStripMenuItem->Text = L"Administrador";
 			this->administradorToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::administradorToolStripMenuItem_Click);
 			// 
 			// compraToolStripMenuItem
 			// 
 			this->compraToolStripMenuItem->Name = L"compraToolStripMenuItem";
-			this->compraToolStripMenuItem->Size = System::Drawing::Size(228, 34);
+			this->compraToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 			this->compraToolStripMenuItem->Text = L"Compra";
 			this->compraToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::compraToolStripMenuItem_Click);
 			// 
@@ -472,7 +472,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ paisToolStripMenuItem;
 			// 
 			this->restaurantesToolStripMenuItem1->Name = L"restaurantesToolStripMenuItem1";
 			this->restaurantesToolStripMenuItem1->Size = System::Drawing::Size(270, 34);
-			this->restaurantesToolStripMenuItem1->Text = L"Restaurant";
+			this->restaurantesToolStripMenuItem1->Text = L"Restaurante";
 			this->restaurantesToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MyForm::restaurantesToolStripMenuItem1_Click);
 			// 
 			// menúToolStripMenuItem2
@@ -480,24 +480,28 @@ private: System::Windows::Forms::ToolStripMenuItem^ paisToolStripMenuItem;
 			this->menúToolStripMenuItem2->Name = L"menúToolStripMenuItem2";
 			this->menúToolStripMenuItem2->Size = System::Drawing::Size(270, 34);
 			this->menúToolStripMenuItem2->Text = L"Menú";
+			this->menúToolStripMenuItem2->Click += gcnew System::EventHandler(this, &MyForm::menúToolStripMenuItem2_Click);
 			// 
 			// productoToolStripMenuItem1
 			// 
 			this->productoToolStripMenuItem1->Name = L"productoToolStripMenuItem1";
 			this->productoToolStripMenuItem1->Size = System::Drawing::Size(270, 34);
 			this->productoToolStripMenuItem1->Text = L"Producto";
+			this->productoToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MyForm::productoToolStripMenuItem1_Click);
 			// 
 			// clienteToolStripMenuItem2
 			// 
 			this->clienteToolStripMenuItem2->Name = L"clienteToolStripMenuItem2";
 			this->clienteToolStripMenuItem2->Size = System::Drawing::Size(270, 34);
 			this->clienteToolStripMenuItem2->Text = L"Cliente";
+			this->clienteToolStripMenuItem2->Click += gcnew System::EventHandler(this, &MyForm::clienteToolStripMenuItem2_Click);
 			// 
 			// administradorToolStripMenuItem2
 			// 
 			this->administradorToolStripMenuItem2->Name = L"administradorToolStripMenuItem2";
 			this->administradorToolStripMenuItem2->Size = System::Drawing::Size(270, 34);
 			this->administradorToolStripMenuItem2->Text = L"Administrador";
+			this->administradorToolStripMenuItem2->Click += gcnew System::EventHandler(this, &MyForm::administradorToolStripMenuItem2_Click);
 			// 
 			// compraToolStripMenuItem1
 			// 
@@ -1791,7 +1795,7 @@ private: System::Void ModificarButton_Click(System::Object^ sender, System::Even
 
 	switch (this->opcionModificar) {
 	case 1:
-		if (this->PaisMante->Text != "") {
+		if (this->NombreMante->Text != "" && this->PaisMante->Text != "") {
 			pais = msclr::interop::marshal_as<string >(this->PaisMante->Text);
 			nombre = msclr::interop::marshal_as<string >(this->NombreMante->Text);
 			if (controller->isInteger(pais)) {
@@ -1810,7 +1814,7 @@ private: System::Void ModificarButton_Click(System::Object^ sender, System::Even
 		break;
 
 	case 2:
-		if (this->PaisMante->Text != "" && this->CiudadMante->Text != "") {
+		if (this->NombreMante->Text != "" && this->PaisMante->Text != "" && this->CiudadMante->Text != "") {
 			pais = msclr::interop::marshal_as<string >(this->PaisMante->Text);
 			ciudad = msclr::interop::marshal_as<string >(this->CiudadMante->Text);
 			nombre = msclr::interop::marshal_as<string >(this->NombreMante->Text);
@@ -1858,7 +1862,7 @@ private: System::Void ModificarButton_Click(System::Object^ sender, System::Even
 			menu = msclr::interop::marshal_as<string >(this->MenuMante->Text);
 
 			if (controller->isInteger(pais) && controller->isInteger(ciudad) && controller->isInteger(rest) && controller->isInteger(menu)) {
-				mensaje = controller->insertarMenu(stoi(pais), stoi(ciudad), stoi(rest), stoi(menu), nombre);
+				mensaje = controller->modificarMenu(stoi(pais), stoi(ciudad), stoi(rest), stoi(menu), nombre);
 				msj = gcnew String(mensaje.c_str());
 				this->TextoBuscar->Text = msj;
 			}
@@ -1871,7 +1875,7 @@ private: System::Void ModificarButton_Click(System::Object^ sender, System::Even
 		}
 		break;
 	case 5:
-		if (this->NombreMante->Text != "" && this->PaisMante->Text != "" && this->CiudadMante->Text != "" && this->RestMante->Text != "" && this->MenuMante->Text != "" && this->ProductoMante->Text != "" && this->CaloriasMante->Text != "" && this->PrecioMante->Text != "" && this->CantidadMante->Text != "") {
+		if (this->PaisMante->Text != "" && this->CiudadMante->Text != "" && this->RestMante->Text != "" && this->MenuMante->Text != "" && this->ProductoMante->Text != "") {
 			pais = msclr::interop::marshal_as<string >(this->PaisMante->Text);
 			ciudad = msclr::interop::marshal_as<string >(this->CiudadMante->Text);
 			nombre = msclr::interop::marshal_as<string >(this->NombreMante->Text);
@@ -1882,8 +1886,8 @@ private: System::Void ModificarButton_Click(System::Object^ sender, System::Even
 			precio = msclr::interop::marshal_as<string >(this->PrecioMante->Text);
 			cantidad = msclr::interop::marshal_as<string >(this->CantidadMante->Text);
 
-			if (controller->isInteger(pais) && controller->isInteger(ciudad) && controller->isInteger(rest) && controller->isInteger(menu) && controller->isInteger(producto) && controller->isInteger(calorias) && controller->isInteger(precio) && controller->isInteger(cantidad)) {
-				mensaje = controller->insertarProducto(stoi(pais), stoi(ciudad), stoi(rest), stoi(menu), stoi(producto), nombre, stoi(calorias), stoi(precio), stoi(cantidad));
+			if (controller->isInteger(pais) && controller->isInteger(ciudad) && controller->isInteger(rest) && controller->isInteger(menu) && controller->isInteger(producto) && (controller->isInteger(calorias) || calorias == "") && (controller->isInteger(precio) || precio == "") && (controller->isInteger(cantidad) || cantidad == "")) {
+				mensaje = controller->modificarProducto(stoi(pais), stoi(ciudad), stoi(rest), stoi(menu), stoi(producto), nombre, calorias, precio, cantidad);
 				msj = gcnew String(mensaje.c_str());
 				this->TextoBuscar->Text = msj;
 			}
@@ -1903,7 +1907,7 @@ private: System::Void ModificarButton_Click(System::Object^ sender, System::Even
 
 
 			if (controller->isInteger(cedula)) {
-				mensaje = controller->insertarCliente(stoi(cedula), nombre);
+				mensaje = controller->modificarCliente(stoi(cedula), nombre);
 				msj = gcnew String(mensaje.c_str());
 				this->TextoBuscar->Text = msj;
 			}
@@ -1923,7 +1927,7 @@ private: System::Void ModificarButton_Click(System::Object^ sender, System::Even
 
 
 			if (controller->isInteger(cedula)) {
-				mensaje = controller->insertarAdmin(stoi(cedula), nombre);
+				mensaje = controller->modificarAdmin(stoi(cedula), nombre);
 				msj = gcnew String(mensaje.c_str());
 				this->TextoBuscar->Text = msj;
 			}
@@ -2075,6 +2079,147 @@ private: System::Void restaurantesToolStripMenuItem1_Click(System::Object^ sende
 	this->PrecioLabelMante->Visible = false;
 	this->CantidadLabelMante->Visible = false;
 	this->CedulaLabel->Visible = false;
+	this->NombreLabelMante->Visible = true;
+
+	this->InsertarDatosMante->Visible = false;
+	this->BuscarButton->Visible = false;
+	this->EliminarButton->Visible = false;
+	this->ModificarButton->Visible = true;
+}
+
+private: System::Void menúToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->opcionModificar = 4;
+
+	this->TextoBuscar->Visible = true;
+
+	this->PanelMantenimiento->Visible = true;
+	this->ComprarPanel->Visible = false;
+
+	this->PaisMante->Visible = true;
+	this->CiudadMante->Visible = true;
+	this->RestMante->Visible = true;
+	this->MenuMante->Visible = true;
+	this->ProductoMante->Visible = false;
+	this->CaloriasMante->Visible = false;
+	this->PrecioMante->Visible = false;
+	this->CantidadMante->Visible = false;
+	this->CedulaMante->Visible = false;
+	this->NombreMante->Visible = true;
+
+	this->PaisLabelMante->Visible = true;
+	this->CiudadLabelMante->Visible = true;
+	this->RestLabelMante->Visible = true;
+	this->MenuLabelMante->Visible = true;
+	this->ProductoLabelMante->Visible = false;
+	this->CaloriasLabelMante->Visible = false;
+	this->PrecioLabelMante->Visible = false;
+	this->CantidadLabelMante->Visible = false;
+	this->CedulaLabel->Visible = false;
+	this->NombreLabelMante->Visible = true;
+
+	this->InsertarDatosMante->Visible = false;
+	this->BuscarButton->Visible = false;
+	this->EliminarButton->Visible = false;
+	this->ModificarButton->Visible = true;
+}
+private: System::Void productoToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->opcionModificar = 5;
+
+	this->TextoBuscar->Visible = true;
+
+	this->PanelMantenimiento->Visible = true;
+	this->ComprarPanel->Visible = false;
+
+	this->PaisMante->Visible = true;
+	this->CiudadMante->Visible = true;
+	this->RestMante->Visible = true;
+	this->MenuMante->Visible = true;
+	this->ProductoMante->Visible = true;
+	this->CaloriasMante->Visible = true;
+	this->PrecioMante->Visible = true;
+	this->CantidadMante->Visible = true;
+	this->CedulaMante->Visible = false;
+	this->NombreMante->Visible = true;
+
+	this->PaisLabelMante->Visible = true;
+	this->CiudadLabelMante->Visible = true;
+	this->RestLabelMante->Visible = true;
+	this->MenuLabelMante->Visible = true;
+	this->ProductoLabelMante->Visible = true;
+	this->CaloriasLabelMante->Visible = true;
+	this->PrecioLabelMante->Visible = true;
+	this->CantidadLabelMante->Visible = true;
+	this->CedulaLabel->Visible = false;
+	this->NombreLabelMante->Visible = true;
+
+	this->InsertarDatosMante->Visible = false;
+	this->BuscarButton->Visible = false;
+	this->EliminarButton->Visible = false;
+	this->ModificarButton->Visible = true;
+}
+private: System::Void clienteToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->opcionModificar = 6;
+
+	this->TextoBuscar->Visible = true;
+
+	this->PanelMantenimiento->Visible = true;
+	this->ComprarPanel->Visible = false;
+
+	this->PaisMante->Visible = false;
+	this->CiudadMante->Visible = false;
+	this->RestMante->Visible = false;
+	this->MenuMante->Visible = false;
+	this->ProductoMante->Visible = false;
+	this->CaloriasMante->Visible = false;
+	this->PrecioMante->Visible = false;
+	this->CantidadMante->Visible = false;
+	this->CedulaMante->Visible = true;
+	this->NombreMante->Visible = true;
+
+	this->PaisLabelMante->Visible = false;
+	this->CiudadLabelMante->Visible = false;
+	this->RestLabelMante->Visible = false;
+	this->MenuLabelMante->Visible = false;
+	this->ProductoLabelMante->Visible = false;
+	this->CaloriasLabelMante->Visible = false;
+	this->PrecioLabelMante->Visible = false;
+	this->CantidadLabelMante->Visible = false;
+	this->CedulaLabel->Visible = true;
+	this->NombreLabelMante->Visible = true;
+
+	this->InsertarDatosMante->Visible = false;
+	this->BuscarButton->Visible = false;
+	this->EliminarButton->Visible = false;
+	this->ModificarButton->Visible = true;
+}
+private: System::Void administradorToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->opcionModificar = 7;
+
+	this->TextoBuscar->Visible = true;
+
+	this->PanelMantenimiento->Visible = true;
+	this->ComprarPanel->Visible = false;
+
+	this->PaisMante->Visible = false;
+	this->CiudadMante->Visible = false;
+	this->RestMante->Visible = false;
+	this->MenuMante->Visible = false;
+	this->ProductoMante->Visible = false;
+	this->CaloriasMante->Visible = false;
+	this->PrecioMante->Visible = false;
+	this->CantidadMante->Visible = false;
+	this->CedulaMante->Visible = true;
+	this->NombreMante->Visible = true;
+
+	this->PaisLabelMante->Visible = false;
+	this->CiudadLabelMante->Visible = false;
+	this->RestLabelMante->Visible = false;
+	this->MenuLabelMante->Visible = false;
+	this->ProductoLabelMante->Visible = false;
+	this->CaloriasLabelMante->Visible = false;
+	this->PrecioLabelMante->Visible = false;
+	this->CantidadLabelMante->Visible = false;
+	this->CedulaLabel->Visible = true;
 	this->NombreLabelMante->Visible = true;
 
 	this->InsertarDatosMante->Visible = false;

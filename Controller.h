@@ -65,11 +65,12 @@ class Controller {
 		string modificarPais(int codPais, string nombre);
 		string modificarCiudad(int codPais, int codCiudad, string nombre);
 		string modificarRest(int codPais, int codCiudad, int codRest, string nombre);
-		void modificarMenu();
-		void modificarProducto();
-		void modificarCliente();
+		string modificarMenu(int codPais, int codCiudad, int codRest, int codMenu, string nombre);
+		string modificarProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd, string nombre, string kcal, string precio, string cantidad);
+		string modificarCliente(int cedula, string nombre);
+		string modificarAdmin(int cedula, string nombre);
 		void modificarCompra();
-		void modificarAdmin();
+		
 		
 		//Reportes
 		void reportarPais();

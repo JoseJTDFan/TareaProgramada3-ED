@@ -418,7 +418,10 @@ string Controller::modificarPais(int codPais, string nombre) {
 		//modificacion += "\nNombre del pais: ";
 		//modificacion += nodoPais->getnombre();
 		//modificacion += "\n\n";
-		nodoPais->setnombre(nombre);
+		if (nombre != "")
+		{
+			nodoPais->setnombre(nombre);
+		}
 		modificacion += "Modificado: ";
 		modificacion += "\nCodigo del país: ";
 		modificacion += to_string(nodoPais->getcodPais());
@@ -441,7 +444,10 @@ string Controller::modificarCiudad(int codPais, int codCiudad, string nombre) {
 
 	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
 	if (nodoCiudad != NULL) {
-		nodoCiudad->setnombre(nombre);
+		if (nombre != "")
+		{
+			nodoCiudad->setnombre(nombre);
+		}
 		modificacion += "Modificado: ";
 		modificacion += "\nCodigo del país: ";
 		modificacion += to_string(nodoCiudad->getcodPais());
@@ -475,7 +481,10 @@ string Controller::modificarRest(int codPais, int codCiudad, int codRest, string
 	pnodoRest nodoRest = nodoCiudad->getRest()->buscarRest(codRest);
 
 	if (nodoRest != NULL) {
-		nodoRest->setNombre(nombre);
+		if (nombre != "")
+		{
+			nodoRest->setNombre(nombre);
+		}
 		modificacion += "Modificado: ";
 		modificacion += "\nCodigo del país: ";
 		modificacion += to_string(nodoRest->getcodPais());
@@ -493,274 +502,155 @@ string Controller::modificarRest(int codPais, int codCiudad, int codRest, string
 
 }
 
-void Controller::modificarMenu() {
-	;
-	system("cls");
-	cout << "****************************** MODIFICAR MENU ******************************" << endl << endl;
-	cout << baseDeDatos.imprimir_Pais();
-	cout << endl << endl << "Ingrese el codigo del pais que quiere modificar un menu: ";
-	int codPais;
-	cin >> codPais;
-	cout << endl;
+string Controller::modificarMenu(int codPais, int codCiudad, int codRest, int codMenu, string nombre) {
+	string modificacion = "";
 
 	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
 	if (nodoPais == NULL) {
-		cout << endl << "Pais Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Pais Invalido o No Registrado";
 	}
 	if (nodoPais->getCiudad() == NULL) {
-		cout << endl << "No hay ciudades registradas." << endl;
-		system("pause");
-		return;
+		return "No hay ciudades registradas.";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Ciudad(codPais);
-	cout << endl << endl << "Ingrese el codigo de la ciudad que quiere modificar un menu: ";
-	int codCiudad;
-	cin >> codCiudad;
+	
 	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
 	if (nodoCiudad == NULL) {
-		cout << endl << "Ciudad Invalida o No Registrada" << endl;
-		system("pause");
-		return;
+		return "Ciudad Invalida o No Registrada";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Rest(codPais, codCiudad);
-	cout << endl << endl << "Ingrese el codigo del restaurante que quiere modificar un menu: ";
-	int codRest;
-	cin >> codRest;
+	
 	pnodoRest nodoRest = nodoCiudad->getRest()->buscarRest(codRest);
 	if (nodoRest == NULL) {
-		cout << endl << "Restaurante Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Restaurante Invalido o No Registrado";
 	}
 
-	system("cls");
-	cout << baseDeDatos.imprimir_Menu(codPais, codCiudad, codRest);
-	cout << endl << endl << "Ingrese el codigo del menu a modificar: ";
-	int codMenu;
-	cin >> codMenu;
 	pnodoMenu nodoMenu = nodoRest->getMenu()->buscarMenu(codMenu);
 	if (nodoMenu != NULL) {
-		system("cls");
-		string nombre;
-		cout << endl << "Ingrese el nuevo nombre del menu: ";
-		cin.ignore();
-		getline(cin, nombre);
-		nodoMenu->setNombre(nombre);
-		system("cls");
-		cout << baseDeDatos.imprimir_Menu(codPais, codCiudad, codRest);
-		cout << endl << endl << "Se ha modificado el menu" << endl;
-		system("pause");
+		if (nombre != "")
+		{
+			nodoMenu->setNombre(nombre);
+		}
+		modificacion += "Modificado: ";
+		modificacion += "\nCodigo del país: ";
+		modificacion += to_string(nodoMenu->getcodPais());
+		modificacion += "\nCodigo de la ciudad: ";
+		modificacion += to_string(nodoMenu->getcodCiudad());
+		modificacion += "\nCodigo del restaurante: ";
+		modificacion += to_string(nodoMenu->getcodRest());
+		modificacion += "\nCodigo del menu: ";
+		modificacion += to_string(nodoMenu->getcodMenu());
+		modificacion += "\nNombre del menu: ";
+		modificacion += nodoMenu->getNombre();
 	}
 	else {
-		cout << endl << "Este codigo no se encuentra registrado." << endl;
-		system("pause");
-		return;
+		return "Este codigo no se encuentra registrado.";
 	}
-
+	return modificacion;
 }
 
-void Controller::modificarProducto() {
-	;
-	system("cls");
-	cout << "****************************** MODIFICAR PRODUCTO ******************************" << endl << endl;
-	cout << baseDeDatos.imprimir_Pais();
-	cout << endl << endl << "Ingrese el codigo del pais que quiere modificar un producto: ";
-	int codPais;
-	cin >> codPais;
-	cout << endl;
+string Controller::modificarProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProducto, string nombre, string kcal, string precio, string cantidad) {
+	string modificacion = "";
 
 	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
 	if (nodoPais == NULL) {
-		cout << endl << "Pais Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Pais Invalido o No Registrado";
 	}
 	if (nodoPais->getCiudad() == NULL) {
-		cout << endl << "No hay ciudades registradas." << endl;
-		system("pause");
-		return;
+		return "No hay ciudades registradas.";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Ciudad(codPais);
-	cout << endl << endl << "Ingrese el codigo de la ciudad que quiere modificar un producto: ";
-	int codCiudad;
-	cin >> codCiudad;
+	
 	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
 	if (nodoCiudad == NULL) {
-		cout << endl << "Ciudad Invalida o No Registrada" << endl;
-		system("pause");
-		return;
+		return "Ciudad Invalida o No Registrada";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Rest(codPais, codCiudad);
-	cout << endl << endl << "Ingrese el codigo del restaurante que quiere modificar un producto: ";
-	int codRest;
-	cin >> codRest;
+	
 	pnodoRest nodoRest = nodoCiudad->getRest()->buscarRest(codRest);
 	if (nodoRest == NULL) {
-		cout << endl << "Restaurante Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Restaurante Invalido o No Registrado";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Menu(codPais, codCiudad, codRest);
-	cout << endl << endl << "Ingrese el codigo del menu que quiere modificar un producto: ";
-	int codMenu;
-	cin >> codMenu;
+	
 	pnodoMenu nodoMenu = nodoRest->getMenu()->buscarMenu(codMenu);
 	if (nodoMenu == NULL) {
-		cout << endl << "Menu Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Menu Invalido o No Registrado";
 	}
-	system("cls");
-	baseDeDatos.imprimir_Producto(codPais, codCiudad, codRest, codMenu);
-	cout << endl << endl << "Ingrese el codigo del producto a modificar: ";
-	int codProducto;
-	cin >> codProducto;
+	
 	pnodoProducto nodoProducto = nodoMenu->getdirProducto()->buscarProducto(codProducto);
 	if (nodoProducto != NULL) {
-		system("cls");
-		bool bandera = true;
-		do {
-			system("cls");
-			cout << "****************************** MODIFICAR PRODUCTO ******************************" << endl;
-			cout << endl << "Ingrese el numero de la opcion que desea modificar" << endl << endl;
-			cout << "1. El nombre." << endl;
-			cout << "2. Las calorias." << endl;
-			cout << "3. El precio." << endl;
-			cout << "4. Insertar mas cantidad. " << endl;
-			cout << "5. Salir." << endl;
-			cout << endl << "----> ";
-			int opcion;
-			cin >> opcion;
-			cout << endl;
-			switch (opcion) {
-			case 1: {
-				system("cls");
-				string nombreNuevo;
-				cout << endl << "Ingrese el nuevo nombre del producto: ";
-				cin.ignore();
-				getline(cin, nombreNuevo);
-				nodoProducto->setnombre(nombreNuevo);
-				system("cls");
-				baseDeDatos.imprimir_Producto(codPais, codCiudad, codRest, codMenu);
-				cout << endl << "Se ha modificado el nombre del producto." << endl;
-				system("pause");
-				break;
-			}
-			case 2: {
-				system("cls");
-				int kcalNuevo;
-				cout << endl << "Ingrese las nuevas calorias del producto: ";
-				cin >> kcalNuevo;
-				nodoProducto->setkcal(kcalNuevo);
-				system("cls");
-				baseDeDatos.imprimir_Producto(codPais, codCiudad, codRest, codMenu);
-				cout << endl << "Se han modificado las calorias del producto." << endl;
-				system("pause");
-				break;
-			}
-			case 3: {
-				system("cls");
-				int precioNuevo;
-				cout << endl << "Ingrese el nuevo precio del producto: ";
-				cin >> precioNuevo;
-				nodoProducto->setprecio(precioNuevo);
-				system("cls");
-				baseDeDatos.imprimir_Producto(codPais, codCiudad, codRest, codMenu);
-				cout << endl << "Se ha modificado el precio del producto." << endl;
-				system("pause");
-				break;
-			}
-			case 4: {
-				system("cls");
-				int cantidad = nodoProducto->getcantidad();
-				int cantidadExtra;
-				cout << endl << "Ingrese la cantidad que se va a insertar: ";
-				cin >> cantidadExtra;
-				nodoProducto->setcantidad(cantidad + cantidadExtra);
-				system("cls");
-				baseDeDatos.imprimir_Producto(codPais, codCiudad, codRest, codMenu);
-				cout << endl << "Se ha insertado mas cantidad del producto." << endl;
-				system("pause");
-				break;
-			}
-			case 5:
-				bandera = false;
-				break;
-			default:
-				cout << "Ingrese un numero valido" << endl;
-				system("pause");
-				break;
-			}
-		} while (bandera);
+		if (nombre != "") {
+			nodoProducto->setnombre(nombre);
+		}
+		if (kcal != "") {
+			nodoProducto->setkcal(stoi(kcal));
+		}
+		if (precio != "") {
+			nodoProducto->setprecio(stoi(precio));
+		}
+		if (cantidad != "") {
+			nodoProducto->setcantidad(stoi(cantidad));
+		}
+		modificacion += "Modificado: ";
+		modificacion += "\nCodigo del país: ";
+		modificacion += to_string(nodoProducto->getcodPais());
+		modificacion += "\nCodigo de la ciudad: ";
+		modificacion += to_string(nodoProducto->getcodCiudad());
+		modificacion += "\nCodigo del restaurante: ";
+		modificacion += to_string(nodoProducto->getcodRest());
+		modificacion += "\nCodigo del menu: ";
+		modificacion += to_string(nodoProducto->getcodMenu());
+		modificacion += "\nCodigo del producto: ";
+		modificacion += to_string(nodoProducto->getcodProducto());
+		modificacion += "\nNombre del producto: ";
+		modificacion += nodoProducto->getNombre();
+		modificacion += "\nCalorias del producto: ";
+		modificacion += to_string(nodoProducto->getkcal());
+		modificacion += "\nPrecio del producto: ";
+		modificacion += to_string(nodoProducto->getprecio());
+		modificacion += "\nCantidad del producto: ";
+		modificacion += to_string(nodoProducto->getcantidad());
 	}
 	else {
-		cout << endl << "Este codigo no se encuentra registrado." << endl;
-		system("pause");
-		return;
+		return "Este codigo no se encuentra registrado.";
 	}
+	return modificacion;
 }
 
-void Controller::modificarCliente() {
-
-	system("cls");
-	cout << "****************************** MODIFICAR CLIENTE ******************************" << endl;
-	clientes.imprimir_Arbol();
-	cout << endl << "Ingrese la cedula del cliente a modificar: ";
-	int cedula;
-	cin >> cedula;
+string Controller::modificarCliente(int cedula, string nombre) {
+	string modificacion = "";
+	
 	puntero_Cliente Pagina_Cliente = clientes.buscarCliente(cedula);
 	int indice = Pagina_Cliente->getIndice(cedula);
 	if (Pagina_Cliente != NULL) {
-		system("cls");
-		cout << endl << "Ingrese el nuevo nombre del cliente: ";
-		string nombre;
-		cin.ignore();
-		getline(cin, nombre);
-		Pagina_Cliente->setNombre(indice, nombre);
-		system("cls");
-		clientes.imprimir_Arbol();
-		cout << endl << endl << "Se ha modificado el cliente." << endl;
-		system("pause");
+		if (nombre != "") {
+			Pagina_Cliente->setNombre(indice, nombre);
+		}
+		modificacion += "\nCedula del cliente: ";
+		modificacion += to_string(Pagina_Cliente->getCedula(indice));
+		modificacion += "\nNombre del cliente : ";
+		modificacion += Pagina_Cliente->getNombre(indice);
 	}
 	else {
-		cout << endl << "Este codigo no se encuentra registrado." << endl;
-		system("pause");
+		return "Este codigo no se encuentra registrado.";
 	}
+	return modificacion;
 }
 
-void Controller::modificarAdmin() {
+string Controller::modificarAdmin(int cedula, string nombre) {
+	string modificacion = "";
 
-	system("cls");
-	cout << "****************************** MODIFICAR ADMINISTRADOR ******************************" << endl;
-	admin.imprimir_Arbol();
-	cout << endl << "Ingrese la cedula del administrador a modificar: ";
-	int cedula;
-	cin >> cedula;
 	puntero_Administradores Pagina_Administradores = admin.buscarAdministradores(cedula);
 	int indice = Pagina_Administradores->getIndice(cedula);
 	if (Pagina_Administradores != NULL) {
-		system("cls");
-		cout << endl << "Ingrese el nuevo nombre del administrador: ";
-		string nombre;
-		cin.ignore();
-		getline(cin, nombre);
-		Pagina_Administradores->setNombre(indice, nombre);
-		system("cls");
-		admin.imprimir_Arbol();
-		cout << endl << endl << "Se ha modificado el administrador." << endl;
-		system("pause");
+		if (nombre != "") {
+			Pagina_Administradores->setNombre(indice, nombre);
+		}
+		modificacion += "\nCedula del administrador: ";
+		modificacion += to_string(Pagina_Administradores->getCedula(indice));
+		modificacion += "\nNombre del administrador : ";
+		modificacion += Pagina_Administradores->getNombre(indice);
 	}
 	else {
-		cout << endl << "Este codigo no se encuentra registrado." << endl;
-		system("pause");
+		return "Este codigo no se encuentra registrado.";
 	}
+	return modificacion;
 }
 
 void Controller::modificarCompra() {
