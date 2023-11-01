@@ -62,9 +62,9 @@ class Controller {
 		string buscarAdmin(int cedula);
 		
 		//Modificar
-		void modificarPais();
-		void modificarCiudad();
-		void modificarRest();
+		string modificarPais(int codPais, string nombre);
+		string modificarCiudad(int codPais, int codCiudad, string nombre);
+		string modificarRest(int codPais, int codCiudad, int codRest, string nombre);
 		void modificarMenu();
 		void modificarProducto();
 		void modificarCliente();

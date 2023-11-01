@@ -408,133 +408,88 @@ string Controller::buscarAdmin(int cedula) {
 }
 
 
-void Controller::modificarPais() {
-
-	system("cls");
-	cout << "****************************** MODIFICAR PAIS ******************************" << endl;
-	cout << baseDeDatos.imprimir_Pais();
-	cout << endl << endl << "Ingrese el codigo del pais a modificar: ";
-	int codPais;
-	cin >> codPais;
-
+string Controller::modificarPais(int codPais, string nombre) {
+	string modificacion = "";
 	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
 	if (nodoPais != NULL) {
-		system("cls");
-		string nombre;
-		cout << endl << "Ingrese el nuevo nombre del pais: ";
-		cin.ignore();
-		getline(cin, nombre);
+		//modificacion += "Antiguo: ";
+		//modificacion += "\nCodigo del país: ";
+		//modificacion += to_string(nodoPais->getcodPais());
+		//modificacion += "\nNombre del pais: ";
+		//modificacion += nodoPais->getnombre();
+		//modificacion += "\n\n";
 		nodoPais->setnombre(nombre);
-		system("cls");
-		cout << baseDeDatos.imprimir_Pais();
-		cout << endl << endl << "Se ha modificado el pais." << endl;
-		system("pause");
+		modificacion += "Modificado: ";
+		modificacion += "\nCodigo del país: ";
+		modificacion += to_string(nodoPais->getcodPais());
+		modificacion += "\nNombre del pais: ";
+		modificacion += nodoPais->getnombre();
 	}
 	else {
-		cout << endl << "Este codigo no se encuentra registrado." << endl;
-		system("pause");
+		return "Este codigo no se encuentra registrado.";
 	}
+	return modificacion;
 }
 
-void Controller::modificarCiudad() {
-	system("cls");
-	cout << "****************************** MODIFICAR CIUDAD ******************************" << endl << endl;
-	cout << baseDeDatos.imprimir_Pais();
-	cout << endl << endl << "Ingrese el codigo del pais que quiere modificar una ciudad: ";
-
-	int codPais;
-	cin >> codPais;
-	cout << endl;
+string Controller::modificarCiudad(int codPais, int codCiudad, string nombre) {
+	string modificacion = "";
 
 	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
 	if (nodoPais == NULL) {
-		cout << endl << "Pais Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Pais Invalido o No Registrado";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Ciudad(codPais);
-	cout << endl << endl << "Ingrese el codigo de la ciudad a modificar: ";
-	int codCiudad;
-	cin >> codCiudad;
 
 	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
 	if (nodoCiudad != NULL) {
-		system("cls");
-		string nombre;
-		cout << endl << "Ingrese el nuevo nombre de la ciudad: ";
-		cin.ignore();
-		getline(cin, nombre);
 		nodoCiudad->setnombre(nombre);
-		system("cls");
-		cout << baseDeDatos.imprimir_Ciudad(codPais);
-		cout << endl << endl << "Se ha modificado la ciudad." << endl;
-		system("pause");
+		modificacion += "Modificado: ";
+		modificacion += "\nCodigo del país: ";
+		modificacion += to_string(nodoCiudad->getcodPais());
+		modificacion += "\nCodigo de la ciudad: ";
+		modificacion += to_string(nodoCiudad->getcodCiudad());
+		modificacion += "\nNombre de la ciudad: ";
+		modificacion += nodoCiudad->getnombre();
 	}
 	else {
-		cout << endl << "Este codigo no se encuentra registrado." << endl;
-		system("pause");
-		return;
+		return "Este codigo no se encuentra registrado.";
 	}
+	return modificacion;
 }
 
-void Controller::modificarRest() {
-	system("cls");
-	cout << "****************************** MODIFICAR RESTAURANTE ******************************" << endl << endl;
-	cout << baseDeDatos.imprimir_Pais();
-	cout << endl << endl << "Ingrese el codigo del pais que quiere modificar un restaurante: ";
-
-	int codPais;
-	cin >> codPais;
-	cout << endl;
+string Controller::modificarRest(int codPais, int codCiudad, int codRest, string nombre) {
+	string modificacion = "";
 
 	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
 	if (nodoPais == NULL) {
-		cout << endl << "Pais Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Pais Invalido o No Registrado";
 	}
 	if (nodoPais->getCiudad() == NULL) {
-		cout << endl << "No hay ciudades registradas." << endl;
-		system("pause");
-		return;
+		return "No hay ciudades registradas.";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Ciudad(codPais);
-	cout << endl << endl << "Ingrese el codigo de la ciudad que quiere modificar un restaurante: ";
-	int codCiudad;
-	cin >> codCiudad;
+
 	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
 	if (nodoCiudad == NULL) {
-		cout << endl << "Ciudad Invalida o No Registrada" << endl;
-		system("pause");
-		return;
+		return "Ciudad Invalida o No Registrada";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Rest(codPais, codCiudad);
-	cout << endl << endl << "Ingrese el codigo del restaurante a modificar: ";
-	int codRest;
-	cin >> codRest;
-
+	
 	pnodoRest nodoRest = nodoCiudad->getRest()->buscarRest(codRest);
 
 	if (nodoRest != NULL) {
-		system("cls");
-		string nombre;
-		cout << endl << "Ingrese el nuevo nombre del restaurante: ";
-		cin.ignore();
-		getline(cin, nombre);
 		nodoRest->setNombre(nombre);
-		system("cls");
-		cout << baseDeDatos.imprimir_Rest(codPais, codCiudad);
-		cout << endl << endl << "Se ha modificado el restaurante." << endl;
-		system("pause");
+		modificacion += "Modificado: ";
+		modificacion += "\nCodigo del país: ";
+		modificacion += to_string(nodoRest->getcodPais());
+		modificacion += "\nCodigo de la ciudad: ";
+		modificacion += to_string(nodoRest->getcodCiudad());
+		modificacion += "\nCodigo del restaurante: ";
+		modificacion += to_string(nodoRest->getcodRest());
+		modificacion += "\nNombre del restaurante: ";
+		modificacion += nodoRest->getnombre();
 	}
 	else {
-		cout << endl << "Este codigo no se encuentra registrado." << endl;
-		system("pause");
-		return;
+		return "Este codigo no se encuentra registrado.";
 	}
+	return modificacion;
 
 }
 
