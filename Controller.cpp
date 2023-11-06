@@ -653,41 +653,20 @@ string Controller::modificarAdmin(int cedula, string nombre) {
 	return modificacion;
 }
 
-void Controller::modificarCompra() {
-	system("cls");
-	cout << "****************************** MODIFICAR COMPRA ******************************" << endl;
-
-	cout << endl << "Ingrese su numero de cedula: ";
-	int cedula;
-	cin >> cedula;
-
+string Controller::modificarCompra(int cedula) {
+	return "";
+	/*
 	puntero_Cliente nodoClientes = clientes.buscarCliente(cedula);
 
 	pnodoFila clienteNodo = colaClientes.buscar(cedula);
 
 	if (clienteNodo == NULL) {
-		cout << endl << "El cliente no esta en la cola." << endl;
-		system("pause");
-		return;
+		return "El cliente no esta en la cola.";
 	}
-
-
-
-	bool bandera = true;
-	do {
-		system("cls");
-		cout << endl << "Que desea modificar?" << endl;
-		cout << "1.Cantidad de un producto" << endl;
-		cout << "2.Agregar un producto" << endl;
-		cout << "3.Eliminar un producto." << endl;
-		cout << endl << "--> ";
-		int opcion;
-		cin >> opcion;
 		switch (opcion) {
 		case 1:
 		{
 
-			system("cls");
 			int prod, cantidad;
 			clienteNodo->productos.MostrarCompra();
 			cout << endl << "Que cantidad desea modificar? (Ingrese Codigo de Producto): ";
@@ -843,12 +822,10 @@ void Controller::modificarCompra() {
 					else {
 						cout << endl << "Este codigo no se encuentra registrado." << endl;
 						system("pause");
-						bandera = desicion(bandera);
 						continue;
 					}
 				} while (bandera == true);
 			} while (bandera == true);
-			bandera = false;
 		}
 		break;
 		case 3:
@@ -875,14 +852,259 @@ void Controller::modificarCompra() {
 			}
 		}
 		break;
-		bandera = false;
 		default:
 			cout << "Ingrese un numero valido" << endl;
 			system("pause");
-		}
-	} while (bandera == true);
+		}*/
 }
 
+string Controller::eliminarPais(int codPais) {
+	string busqueda;
+	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
+	if (nodoPais != NULL) {
+		busqueda += "\nPAÍS ELIMINADO: \n";
+		busqueda += "Codigo del pais: ";
+		busqueda += to_string(nodoPais->getcodPais());
+		busqueda += "\nNombre del pais: ";
+		busqueda += nodoPais->getnombre();
+		this->baseDeDatos.borrar_Pais(codPais);
+		return busqueda;
+	}
+	else {
+		return "Este codigo no se encuentra registrado.";
+	}
+}
+string Controller::eliminarCiudad(int codPais, int codCiudad) {
+	string busqueda;
+	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
+	if (nodoPais == NULL) {
+		return "Pais Invalido o No Registrado";
+	}
+	if (nodoPais->getCiudad() == NULL) {
+		return "No hay ciudades registradas.";
+	}
+	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
+	if (nodoCiudad != NULL) {
+		busqueda += "\nCIUDAD ELIMINADA: \n";
+		busqueda += "\nCodigo de pais: ";
+		busqueda += to_string(nodoCiudad->getcodPais());
+		busqueda += "\nCodigo de la ciudad: ";
+		busqueda += to_string(nodoCiudad->getcodCiudad());
+		busqueda += "\nNombre de la ciudad: ";
+		busqueda += nodoCiudad->getnombre();
+		this->baseDeDatos.borrar_Ciudad(codPais, codCiudad);
+		return busqueda;
+	}
+	else {
+		return "Este codigo no se encuentra registrado.";
+
+	}
+}
+
+string Controller::eliminarRest(int codPais, int codCiudad, int codRest) {
+	string busqueda;
+	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
+	if (nodoPais == NULL) {
+		return "Pais Invalido o No Registrado";
+	}
+	if (nodoPais->getCiudad() == NULL) {
+		return "No hay ciudades registradas.";
+	}
+	system("cls");
+
+	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
+	if (nodoCiudad == NULL) {
+		return "Ciudad Invalida o No Registrada";
+	}
+	if (nodoCiudad->getRest() == NULL) {
+		return "No hay restaurantes registrados.";
+	}
+
+	pnodoRest nodoRest = baseDeDatos.buscarRest(codPais, codCiudad, codRest);
+	if (nodoRest != NULL) {
+		busqueda += "\nRESTAURANTE ELIMINADA: \n";
+		busqueda += "\nCodigo de pais: ";
+		busqueda += to_string(nodoRest->getcodPais());
+		busqueda += "\nCodigo de la ciudad: ";
+		busqueda += to_string(nodoRest->getcodCiudad());
+		busqueda += "\nCodigo del restaurante: ";
+		busqueda += to_string(nodoRest->getcodRest());
+		busqueda += "\nNombre del restaurante: ";
+		busqueda += nodoRest->getnombre();
+		this->baseDeDatos.borrar_Rest(codPais, codCiudad, codRest);
+		return busqueda;
+	}
+	else {
+		return "Este codigo no se encuentra registrado.";
+	}
+}
+
+string Controller::eliminarMenu(int codPais, int codCiudad, int codRest, int codMenu) {
+	string busqueda;
+
+	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
+	if (nodoPais == NULL) {
+		return "Pais Invalido o No Registrado";
+	}
+	if (nodoPais->getCiudad() == NULL) {
+		return "No hay ciudades registradas.";
+	}
+
+	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
+	if (nodoCiudad == NULL) {
+		return "Ciudad Invalida o No Registrada";
+	}
+	if (nodoCiudad->getRest() == NULL) {
+		return "No hay restaurantes registrados.";
+	}
+
+	pnodoRest nodoRest = baseDeDatos.buscarRest(codPais, codCiudad, codRest);
+	if (nodoRest == NULL) {
+		return "Restaurante Invalido o No Registrado";
+	}
+	if (nodoRest->getMenu() == NULL) {
+		return "No hay menus registrados.";
+	}
+
+	pnodoMenu nodoMenu = baseDeDatos.buscarMenu(codPais, codCiudad, codRest, codMenu);
+	if (nodoMenu != NULL) {
+		busqueda += "\nMENÚ ELIMINADO: \n";
+		busqueda += "\nCodigo de pais: ";
+		busqueda += to_string(nodoMenu->getcodPais());
+		busqueda += "\nCodigo de la ciudad: ";
+		busqueda += to_string(nodoMenu->getcodCiudad());
+		busqueda += "\nCodigo del restaurante: ";
+		busqueda += to_string(nodoMenu->getcodRest());
+		busqueda += "\nCodigo del menu: ";
+		busqueda += to_string(nodoMenu->getcodMenu());
+		busqueda += "\nNombre del menu: ";
+		busqueda += nodoMenu->getNombre();
+		this->baseDeDatos.borrar_Menu(codPais, codCiudad, codRest, codMenu);
+	}
+	else {
+		return "Este codigo no se encuentra registrado.";
+	}
+	return busqueda;
+}
+string Controller::eliminarProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd) {
+	string busqueda = "";
+
+	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
+	if (nodoPais == NULL) {
+		return "Pais Invalido o No Registrado";
+
+	}
+	if (nodoPais->getCiudad() == NULL) {
+		return "No hay ciudades registradas.";
+	}
+
+	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
+	if (nodoCiudad == NULL) {
+		return "Ciudad Invalida o No Registrada";
+	}
+	if (nodoCiudad->getRest() == NULL) {
+		return "No hay restaurantes registrados.";
+	}
+
+	pnodoRest nodoRest = baseDeDatos.buscarRest(codPais, codCiudad, codRest);
+	if (nodoRest == NULL) {
+		return "Restaurante Invalido o No Registrado";
+	}
+	if (nodoRest->getMenu() == NULL) {
+		return "No hay menus registrados.";
+	}
+
+	pnodoMenu nodoMenu = baseDeDatos.buscarMenu(codPais, codCiudad, codRest, codMenu);
+	if (nodoMenu == NULL) {
+		return "Menu Invalido o No Registrado";
+	}
+	if (nodoMenu->getdirProducto() == NULL) {
+		return "No hay productos registrados.";
+	}
+
+	pnodoProducto nodoProd = baseDeDatos.buscarProducto(codPais, codCiudad, codRest, codMenu, codProd);
+	if (nodoProd != NULL) {
+		busqueda += "\nPRODUCTO ELIMINADO: \n";
+		busqueda += "\nCodigo de pais: ";
+		busqueda += to_string(nodoProd->getcodPais());
+		busqueda += "\nCodigo de la ciudad: ";
+		busqueda += to_string(nodoProd->getcodCiudad());
+		busqueda += "\nCodigo del restaurante: ";
+		busqueda += to_string(nodoProd->getcodRest());
+		busqueda += "\nCodigo del menu: ";
+		busqueda += to_string(nodoProd->getcodMenu());
+		busqueda += "\nCodigo del producto: ";
+		busqueda += to_string(nodoProd->getcodProducto());
+		busqueda += "\nNombre del producto: ";
+		busqueda += nodoProd->getNombre();
+		busqueda += "\nCalorias del producto: ";
+		busqueda += to_string(nodoProd->getkcal());
+		busqueda += "\nPrecio del producto: ";
+		busqueda += to_string(nodoProd->getprecio());
+		busqueda += "\nCantidad del producto: ";
+		busqueda += to_string(nodoProd->getcantidad());
+		this->baseDeDatos.borrar_Producto(codPais, codCiudad, codRest, codMenu, codProd);
+
+	}
+	else {
+		return "Este codigo no se encuentra registrado.";
+	}
+	return busqueda;
+}
+
+string Controller::eliminarClientes(int cedula) {
+	string busqueda = "";
+
+	puntero_Cliente Pagina_Cliente = clientes.buscarCliente(cedula);
+	int indice = Pagina_Cliente->getIndice(cedula);
+	if (Pagina_Cliente != NULL) {
+		busqueda += "\nCLIENTE ELIMINADO: \n";
+		busqueda += "\nCedula del cliente: ";
+		busqueda += to_string(Pagina_Cliente->getCedula(indice));
+		busqueda += "\nNombre del cliente : ";
+		busqueda += Pagina_Cliente->getNombre(indice);
+		this->clientes.eliminar(cedula);
+	}
+	else {
+		return "Este codigo no se encuentra registrado.";
+	}
+	return busqueda;
+}
+string Controller::eliminarAdmin(int cedula) {
+	string busqueda = "";
+
+	puntero_Administradores Pagina_Administradores = admin.buscarAdministradores(cedula);
+	int indice = Pagina_Administradores->getIndice(cedula);
+	if (Pagina_Administradores != NULL) {
+		busqueda += "\nADMINISTRADOR ELIMINADO: \n";
+		busqueda += "\nCedula del administrador: ";
+		busqueda += to_string(Pagina_Administradores->getCedula(indice));
+		busqueda += "\nNombre del administrador : ";
+		busqueda += Pagina_Administradores->getNombre(indice);
+		this->admin.eliminar(cedula);
+	}
+	else {
+		return "Este codigo no se encuentra registrado.";
+	}
+	return busqueda;
+}
+
+string Controller::eliminarCompra(int cedula) {
+
+	if (colaClientes.buscar(cedula) == NULL) {
+		return "El cliente no está en la cola.";
+	}
+	pnodoFila clienteNodo = colaClientes.buscar(cedula);
+	pnodoProductos aux = clienteNodo->productos.primero;
+	while (aux != NULL) {
+		pnodoProducto nodoProd = baseDeDatos.buscarProducto(aux->codPais, aux->codCiudad, aux->codRest, aux->codMenu, aux->codProducto);
+		nodoProd->setcantidad(nodoProd->getcantidad() + aux->cantidad);
+		aux = aux->siguiente;
+	}
+	colaClientes.borrarPosicion(colaClientes.getPosicion(cedula));
+	//clienteNodo->productos.InsertarFinal(codPais, codCiudad, codRest, codMenu, codProd, nodoProd->getNombre(), cantidad, nodoProd->getprecio());
+	return colaClientes.imprimir();
+}
 
 bool Controller::desicion(bool bandera) {
 	bool bandera2 = true;
@@ -989,6 +1211,7 @@ string Controller::comprar(int cedula,int codPais, int codCiudad, int codRest, i
 		}
 
 		pnodoProducto nodoProd = baseDeDatos.buscarProducto(codPais, codCiudad, codRest, codMenu, codProd);
+
 		if (nodoProd != NULL) {
 			if (cantidad <= nodoProd->getcantidad()) {
 				nodoProd->setcantidad(nodoProd->getcantidad() - cantidad);

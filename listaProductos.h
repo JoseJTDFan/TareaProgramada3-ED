@@ -34,4 +34,5 @@ class listaProductos {
     pnodoProductos primero;
   
   friend class cola;
+  friend class Controller;
 };

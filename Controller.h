@@ -69,7 +69,18 @@ class Controller {
 		string modificarProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd, string nombre, string kcal, string precio, string cantidad);
 		string modificarCliente(int cedula, string nombre);
 		string modificarAdmin(int cedula, string nombre);
-		void modificarCompra();
+		string modificarCompra(int cedula);
+		
+		//Eliminar
+
+		string eliminarPais(int codPais);
+		string eliminarCiudad(int codPais, int codCiudad);
+		string eliminarRest(int codPais, int codCiudad, int codRest);
+		string eliminarMenu(int codPais, int codCiudad, int codRest, int codMenu);
+		string eliminarProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd);
+		string eliminarClientes(int cedula);
+		string eliminarAdmin(int cedula);
+		string eliminarCompra(int cedula);
 		
 		
 		//Reportes

@@ -238,13 +238,13 @@ void borrar_Vent(NodoCiudad*& pProducto_Sustituto, NodoCiudad*& pNodo, bool& pHh
 		pHh = true;
 }
 
-void borrar_Ciudad_Vent(NodoCiudad*& pNodo, bool& pHh, int& pcodPais)
+void borrar_Ciudad_Vent(NodoCiudad*& pNodo, bool& pHh, int& pcodCiudad)
 {
 	NodoCiudad* producto_Q = NULL;
 	NodoCiudad* producto_Aux = NULL;
 	if (pNodo != NULL) {
-		if (pcodPais < pNodo->getcodCiudad()) {
-			producto_Aux = pNodo->getHIzq(); borrar_Ciudad_Vent(producto_Aux, pHh, pcodPais); pNodo->setHIzq(producto_Aux);
+		if (pcodCiudad < pNodo->getcodCiudad()) {
+			producto_Aux = pNodo->getHIzq(); borrar_Ciudad_Vent(producto_Aux, pHh, pcodCiudad); pNodo->setHIzq(producto_Aux);
 			//BorrarBalanceado (pNodo->getHIzq(), pHh, pcodPais);
 			if (pHh)
 			{
@@ -254,8 +254,8 @@ void borrar_Ciudad_Vent(NodoCiudad*& pNodo, bool& pHh, int& pcodPais)
 			}
 		}
 		else {
-			if (pcodPais > pNodo->getcodPais()) {
-				producto_Aux = pNodo->getHDer(); borrar_Ciudad_Vent(producto_Aux, pHh, pcodPais); pNodo->setHDer(producto_Aux);
+			if (pcodCiudad > pNodo->getcodCiudad()) {
+				producto_Aux = pNodo->getHDer(); borrar_Ciudad_Vent(producto_Aux, pHh, pcodCiudad); pNodo->setHDer(producto_Aux);
 				//BorrarBalanceado(raiz->Hder, Hh, x);
 				if (pHh)
 				{
@@ -268,8 +268,9 @@ void borrar_Ciudad_Vent(NodoCiudad*& pNodo, bool& pHh, int& pcodPais)
 				producto_Q = pNodo;
 			}
 		}
-		if (pcodPais != pNodo->getcodCiudad())
+		if (pcodCiudad != pNodo->getcodCiudad())
 			return;
+
 		if (producto_Q->getHDer() == NULL) {
 			pNodo = producto_Q->getHIzq();
 			pHh = true;
