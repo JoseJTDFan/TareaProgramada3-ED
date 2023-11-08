@@ -279,20 +279,37 @@ void listaProductos::MostrarReportePrecio()
    cout << endl;
 }
 
-void listaProductos::MostrarCompra()
+string listaProductos::MostrarCompra()
 {
+    string res;
 	if(primero==NULL){
-		return;
+		return "";
 	}
    pnodoProductos aux;
-   cout<<endl<<"		* PAIS -> CIUDAD -> RESTAURANTE -> MENU -> PRODUCTO -> NOMBRE -> CANTIDAD -> PRECIO"<<endl;
+   res += "\n * Pais -> Ciudad -> Restaurante -> Menu -> Producto -> Nombre -> Cantidad -> Precio\n";
    aux = primero;
    while(aux) {
-      cout <<"		* "<<aux->codPais << " -> "<<aux->codCiudad<<" -> "<<aux->codRest<<" -> "<<aux->codMenu<<" -> ";
-      cout<<aux->codProducto<<" -> "<<aux->nombre<<" -> "<<aux->cantidad<<" -> "<<aux->precio<<endl;
+       res += " * ";
+       res += to_string(aux->codPais);
+       res += " -> ";
+       res += to_string(aux->codCiudad);
+       res += " -> ";
+       res += to_string(aux->codRest);
+       res += " -> ";
+       res += to_string(aux->codMenu);
+       res += " -> ";
+       res += to_string(aux->codProducto);
+       res += " -> ";
+       res += aux->nombre;
+       res += " -> ";
+       res += to_string(aux->cantidad);
+       res += " -> ";
+       res += to_string(aux->precio);
+       res += "\n";
       aux = aux->siguiente;
    }
-   cout << endl;
+   res += "\n";
+   return res;
 }
 
 pnodoProductos listaProductos::buscarProducto(int prod){

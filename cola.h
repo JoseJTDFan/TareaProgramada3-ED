@@ -3,6 +3,7 @@
 //Estructuras de Datos
 
 #include <iostream>
+#include <string>
 #include "NodoFila.h"
 using namespace std;
 
@@ -22,9 +23,8 @@ public:
     void EliminarFinal();
     void EliminarPos(int pos);
     bool ListaVacia() { return primero == NULL; } //retorna True o False
-    void Imprimir();
     void Borrar(pnodoFila v);
-    void imprimir();
+    string imprimir();
     void Siguiente();
     void Primero();
     void Ultimo();

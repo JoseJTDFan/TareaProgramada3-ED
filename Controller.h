@@ -40,36 +40,48 @@ class Controller {
 		//Menu
 		void lecturaArchivos();
 		void reportes();
-		void comprar();
+		string comprar(int cedula, int codPais, int codCiudad, int codRest, int codMenu, int codProd, int cantidad, int lugar);
 		void pagar();
 		
 		//Insertar
 		string insertarPais(int codPais, string nombre);
 		string insertarCiudad(int codPais, int codCiudad, string nombre);
-		void insertarRest();
-		void insertarMenu();
-		void insertarProducto();
-		void insertarCliente();
-		void insertarAdmin();
+		string insertarRest(int codPais, int codCiudad, int codRest, string nombre);
+		string insertarMenu(int codPais, int codCiudad, int codRest, int codMenu, string nombre);
+		string insertarProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd, string nombre, int kcal, int precio, int cantidad);
+		string insertarCliente(int cedula, string nombre);
+		string insertarAdmin(int cedula, string nombre);
 		
 		//Buscar
-		void buscarPais();
-		void buscarCiudad();
-		void buscarRest();
-		void buscarMenu();
-		void buscarProducto();
-		void buscarClientes();
-		void buscarAdmin();
+		string buscarPais(int codPais);
+		string buscarCiudad(int codPais, int codCiudad);
+		string buscarRest(int codPais, int codCiudad, int codRest);
+		string buscarMenu(int codPais, int codCiudad, int codRest, int codMenu);
+		string buscarProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd);
+		string buscarClientes(int cedula);
+		string buscarAdmin(int cedula);
 		
 		//Modificar
-		void modificarPais();
-		void modificarCiudad();
-		void modificarRest();
-		void modificarMenu();
-		void modificarProducto();
-		void modificarCliente();
-		void modificarCompra();
-		void modificarAdmin();
+		string modificarPais(int codPais, string nombre);
+		string modificarCiudad(int codPais, int codCiudad, string nombre);
+		string modificarRest(int codPais, int codCiudad, int codRest, string nombre);
+		string modificarMenu(int codPais, int codCiudad, int codRest, int codMenu, string nombre);
+		string modificarProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd, string nombre, string kcal, string precio, string cantidad);
+		string modificarCliente(int cedula, string nombre);
+		string modificarAdmin(int cedula, string nombre);
+		string modificarCompra(int cedula);
+		
+		//Eliminar
+
+		string eliminarPais(int codPais);
+		string eliminarCiudad(int codPais, int codCiudad);
+		string eliminarRest(int codPais, int codCiudad, int codRest);
+		string eliminarMenu(int codPais, int codCiudad, int codRest, int codMenu);
+		string eliminarProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd);
+		string eliminarClientes(int cedula);
+		string eliminarAdmin(int cedula);
+		string eliminarCompra(int cedula);
+		
 		
 		//Reportes
 		void reportarPais();
@@ -95,6 +107,7 @@ class Controller {
 		
 		ArbolClientes getClientes() { return this->clientes; }
 		ArbolAdministradores getAdmin() { return this->admin; }
+		cola getColaClientes() { return this->colaClientes; }
 
 	private:
 		ArbolClientes clientes;
