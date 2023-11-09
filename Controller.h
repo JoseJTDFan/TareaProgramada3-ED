@@ -84,25 +84,25 @@ class Controller {
 		
 		
 		//Reportes
-		void reportarPais();
-		void reportarCiudad();
-		void reportarRest();
-		void reportarCliente();
-		void reportarComprasCliente();
-		void reportarRestMasBuscado();
-		void reportarMenu();
-		void reportarProductos();
-		void reportarMenuMasBuscado();
-		void reportarProductoMasComprado();
-		void reportarFacturaMayor();
-		void reportarFacturaMenor();
-		void reportarPrecio();
-		void reportarDescuento();
-		void reportarCantidadProducto();
+		string reportarPais();
+		string reportarCiudad(int codPais);
+		string reportarRest(int codPais, int codCiudad);
+		string reportarCliente();
+		string reportarComprasCliente(int cedula);
+		string reportarRestMasBuscado();
+		//string reportarMenu();
+		//string reportarProductos();
+		string reportarMenuMasBuscado();
+		string reportarProductoMasComprado();
+		string reportarFacturaMayor();
+		string reportarFacturaMenor();
+		string reportarPrecio(int codPais, int codCiudad, int codRest, int codMenu, int codProd);
+		string reportarDescuento();
+		string reportarCantidadProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd);
 		
 		//Extra
 		bool desicion(bool bandera);
-		void guardarEnArchivo(string nombreArchivo, string texto);
+		string guardarEnArchivo(string nombreArchivo, string texto);
 		bool isInteger(const string str);
 		
 		ArbolClientes getClientes() { return this->clientes; }

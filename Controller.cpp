@@ -1370,100 +1370,61 @@ void Controller::pagar() {
 
 //*************** REPORTES **************************
 
-void Controller::guardarEnArchivo(string nombreArchivo, string texto) {
+string Controller::guardarEnArchivo(string nombreArchivo, string texto) {
 	ofstream archivo(nombreArchivo);
 
 	if (!archivo.is_open()) {
-		cerr << "No se pudo abrir el archivo: " << nombreArchivo << endl;
-		return;
+		return "No se pudo abrir el archivo: " + nombreArchivo;
 	}
 
 	archivo << texto;
 
 	archivo.close();
 
-	cout << "Reporte realizado en el archivo: " << nombreArchivo << endl;
-	system("pause");
+	return "Reporte realizado en el archivo: " + nombreArchivo;
 }
 
-void Controller::reportarPais() {
-	system("cls");
-	cout << "****************************** REPORTE DE PAISES ******************************" << endl << endl;
-	guardarEnArchivo("Arbol de Paises.txt", baseDeDatos.reportePais());
+string Controller::reportarPais() {
+	return guardarEnArchivo("Arbol de Paises.txt", baseDeDatos.reportePais());
+	
 }
 
-void Controller::reportarCiudad() {
-	system("cls");
-	cout << "****************************** REPORTE DE CIUDADES ******************************" << endl << endl;
-	cout << baseDeDatos.imprimir_Pais();
-	cout << endl << endl << "Ingrese el codigo del pais: ";
-	int codPais;
-	string nombre;
-	cin >> codPais;
-	cout << endl;
+string Controller::reportarCiudad(int codPais) {
 	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
 	if (nodoPais == NULL) {
-		cout << endl << "Pais Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Pais Invalido o No Registrado";
 	}
 	if (nodoPais->getCiudad() == NULL) {
-		cout << endl << "No hay ciudades registradas." << endl;
-		cout << endl << "No se ha generado el reporte." << endl;
-		system("pause");
-		return;
+		return "No hay ciudades registradas. \n No se ha generado el reporte.";
 	}
-	nombre = nodoPais->getnombre();
-	guardarEnArchivo("Arbol de Ciudades de " + nombre + ".txt", baseDeDatos.reporteCiudad(nodoPais));
+	string nombre = nodoPais->getnombre();
+	return guardarEnArchivo("Arbol de Ciudades de " + nombre + ".txt", baseDeDatos.reporteCiudad(nodoPais));
 }
 
-void Controller::reportarRest() {
-	system("cls");
-	cout << "****************************** REPORTE DE RESTAURANTES ******************************" << endl << endl;
-	cout << baseDeDatos.imprimir_Pais();
-	cout << endl << endl << "Ingrese el codigo del pais: ";
-	int codPais;
-	cin >> codPais;
-	cout << endl;
+string Controller::reportarRest(int codPais, int codCiudad) {
 	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
 	if (nodoPais == NULL) {
-		cout << endl << "Pais Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Pais Invalido o No Registrado";
 	}
 	if (nodoPais->getCiudad() == NULL) {
-		cout << endl << "No hay ciudades registradas." << endl;
-		system("pause");
-		return;
+		return "No hay ciudades registradas.";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Ciudad(codPais);
-	cout << endl << endl << "Ingrese el codigo de la ciudad: ";
-	int codCiudad;
-	cin >> codCiudad;
-	cout << endl;
 	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
 	if (nodoCiudad == NULL) {
-		cout << endl << "Ciudad Invalida o No Registrada" << endl;
-		system("pause");
-		return;
+		return "Ciudad Invalida o No Registrada";
 	}
 	if (nodoCiudad->getRest() == NULL) {
-		cout << endl << "No hay restaurantes registrados." << endl;
-		system("pause");
-		return;
+		return "No hay restaurantes registrados.";
 	}
 	string nombreCiudad = nodoCiudad->getnombre();
-	guardarEnArchivo("Arbol de Restaurantes de la ciudad " + nombreCiudad + ".txt", baseDeDatos.reporteRest(nodoCiudad));
+	return guardarEnArchivo("Arbol de Restaurantes de la ciudad " + nombreCiudad + ".txt", baseDeDatos.reporteRest(nodoCiudad));
 }
 
-void Controller::reportarCliente() {
-	system("cls");
-	cout << "****************************** REPORTE DE CLIENTES ******************************" << endl << endl;
-	guardarEnArchivo("Arbol de Clientes.txt", clientes.reporteCliente());
+string Controller::reportarCliente() {
+	return guardarEnArchivo("Arbol de Clientes.txt", clientes.reporteCliente());
 }
 
-void Controller::reportarMenu() {
+/*void Controller::reportarMenu() {
 	system("cls");
 	cout << "****************************** REPORTE DE MENU ******************************" << endl << endl;
 	cout << baseDeDatos.imprimir_Pais();
@@ -1518,9 +1479,9 @@ void Controller::reportarMenu() {
 	}
 	string nombreRest = nodoRest->getnombre();
 	guardarEnArchivo("Arbol de Menu del restaurante " + nombreRest + ".txt", baseDeDatos.reporteMenu(nodoRest));
-}
+}*/
 
-void Controller::reportarProductos() {
+/*void Controller::reportarProductos() {
 	system("cls");
 	cout << "****************************** REPORTE DE PRODUCTOS ******************************" << endl << endl;
 	cout << baseDeDatos.imprimir_Pais();
@@ -1592,265 +1553,146 @@ void Controller::reportarProductos() {
 	}
 	string nombreMenu = nodoMenu->getNombre();
 	guardarEnArchivo("Arbol delproductos del menu " + nombreMenu + ".txt", baseDeDatos.reporteProducto(nodoMenu));
-}
+}*/
 
-void Controller::reportarMenuMasBuscado() {
-	system("cls");
-	cout << "****************************** MENU MAS BUSCADO ******************************" << endl << endl;
+string Controller::reportarMenuMasBuscado() {
 	string texto = "	MENU MAS BUSCADO\n\n	";
 	texto += listas.MasBuscado();
-	guardarEnArchivo("Menu Mas Buscado.txt", texto);
+	return guardarEnArchivo("Menu Mas Buscado.txt", texto);
 }
 
-void Controller::reportarRestMasBuscado() {
-	system("cls");
-	cout << "****************************** RESTAURANTE MAS BUSCADO ******************************" << endl << endl;
+string Controller::reportarRestMasBuscado() {
 	string texto = "	RESTAURANTE MAS BUSCADO\n\n	";
 	texto += listas.MasBuscadoR();
-	guardarEnArchivo("Restaurante Mas Buscado.txt", texto);
+	return guardarEnArchivo("Restaurante Mas Buscado.txt", texto);
 }
 
-void Controller::reportarPrecio() {
-	system("cls");
-	cout << "****************************** REPORTE DE PRECIO ******************************" << endl << endl;
-	cout << baseDeDatos.imprimir_Pais();
-	cout << endl << endl << "Ingrese el codigo del pais: ";
-	int codPais;
-	cin >> codPais;
-	cout << endl;
+string Controller::reportarPrecio(int codPais, int codCiudad, int codRest, int codMenu, int codProducto) {
 	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
 	if (nodoPais == NULL) {
-		cout << endl << "Pais Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Pais Invalido o No Registrado";
 	}
 	if (nodoPais->getCiudad() == NULL) {
-		cout << endl << "No hay ciudades registradas." << endl;
-		system("pause");
-		return;
+		return "No hay ciudades registradas.";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Ciudad(codPais);
-	cout << endl << endl << "Ingrese el codigo de la ciudad: ";
-	int codCiudad;
-	cin >> codCiudad;
-	cout << endl;
 	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
 	if (nodoCiudad == NULL) {
-		cout << endl << "Ciudad Invalida o No Registrada" << endl;
-		system("pause");
-		return;
+		return "Ciudad Invalida o No Registrada";
 	}
 	if (nodoCiudad->getRest() == NULL) {
-		cout << endl << "No hay restaurantes registrados." << endl;
-		system("pause");
-		return;
+		return "No hay restaurantes registrados.";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Rest(codPais, codCiudad);
-	cout << endl << endl << "Ingrese el codigo del restaurante: ";
-	int codRest;
-	cin >> codRest;
-	cout << endl;
 	pnodoRest nodoRest = baseDeDatos.buscarRest(codPais, codCiudad, codRest);
 	if (nodoRest == NULL) {
-		cout << endl << "Restaurante Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Restaurante Invalido o No Registrado";
 	}
 	if (nodoRest->getMenu() == NULL) {
-		cout << endl << "No hay menus registrados." << endl;
-		system("pause");
-		return;
+		return "No hay menus registrados.";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Menu(codPais, codCiudad, codRest);
-	cout << endl << endl << "Ingrese el codigo del menu: ";
-	int codMenu;
-	cin >> codMenu;
-	cout << endl;
 	pnodoMenu nodoMenu = baseDeDatos.buscarMenu(codPais, codCiudad, codRest, codMenu);
 	if (nodoRest == NULL) {
-		cout << endl << "Menu Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Menu Invalido o No Registrado";
 	}
 	if (nodoRest->getMenu() == NULL) {
-		cout << endl << "No hay productos registrados." << endl;
-		system("pause");
-		return;
+		return "No hay productos registrados.";
 	}
-	system("cls");
-	//baseDeDatos.imprimir_Producto(codPais,  codCiudad, codRest, codMenu);
-	cout << endl << endl << "Ingrese el codigo del producto: ";
-	int codProducto;
-	cin >> codProducto;
-	cout << endl;
 	pnodoProducto nodoProducto = baseDeDatos.buscarProducto(codPais, codCiudad, codRest, codMenu, codProducto);
 	if (nodoRest == NULL) {
-		cout << endl << "Producto Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Producto Invalido o No Registrado";
 	}
 	string nombreProducto = nodoProducto->getNombre();
-	guardarEnArchivo("Precio del producto " + nombreProducto + ".txt", "Precio del producto: " + to_string(nodoProducto->getprecio()) + " colones");
+	return guardarEnArchivo("Precio del producto " + nombreProducto + ".txt", "Precio del producto: " + to_string(nodoProducto->getprecio()) + " colones");
 }
 
-void Controller::reportarDescuento() {
+string Controller::reportarDescuento() {
 	system("cls");
 	cout << "****************************** REPORTE DE DESCUENTO ******************************" << endl << endl;
-	guardarEnArchivo("Descuento.txt", "El descuento por pago en tarjeta es de: " + to_string(this->descuento) + "%");
+	return guardarEnArchivo("Descuento.txt", "El descuento por pago en tarjeta es de: " + to_string(this->descuento) + "%");
 }
 
-void Controller::reportarFacturaMayor() {
-	system("cls");
-	cout << "****************************** FACTURA DE MAYOR MONTO ******************************" << endl << endl;
+string Controller::reportarFacturaMayor() {
 	if (mayorFacturastring == "") {
 		cout << "No hay facturas todavia" << endl;
 	}
 	string texto = "FACTURA DE MAYOR MONTO\n\n";
 	texto += mayorFacturastring;
-	guardarEnArchivo("Factura de Mayor Monto.txt", texto);
+	return guardarEnArchivo("Factura de Mayor Monto.txt", texto);
 }
 
-void Controller::reportarFacturaMenor() {
-	system("cls");
-	cout << "****************************** FACTURA DE MENOR MONTO ******************************" << endl << endl;
+string Controller::reportarFacturaMenor() {
 	if (menorFacturastring == "") {
 		cout << "No hay facturas todavia" << endl;
 	}
 	string texto = "FACTURA DE MENOR MONTO\n\n";
 	texto += menorFacturastring;
-	guardarEnArchivo("Factura de Menor Monto.txt", texto);
+	return guardarEnArchivo("Factura de Menor Monto.txt", texto);
 }
 
-void Controller::reportarCantidadProducto() {
-	system("cls");
-	cout << "****************************** REPORTE DE CANTIDAD ******************************" << endl << endl;
-	cout << baseDeDatos.imprimir_Pais();
-	cout << endl << endl << "Ingrese el codigo del pais: ";
-	int codPais;
-	cin >> codPais;
-	cout << endl;
+string Controller::reportarCantidadProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProducto) {
 	pnodoPais nodoPais = baseDeDatos.buscarPais(codPais);
 	if (nodoPais == NULL) {
-		cout << endl << "Pais Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Pais Invalido o No Registrado";
 	}
 	if (nodoPais->getCiudad() == NULL) {
-		cout << endl << "No hay ciudades registradas." << endl;
-		system("pause");
-		return;
+		return "No hay ciudades registradas.";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Ciudad(codPais);
-	cout << endl << endl << "Ingrese el codigo de la ciudad: ";
-	int codCiudad;
-	cin >> codCiudad;
-	cout << endl;
 	pnodoCiudad nodoCiudad = baseDeDatos.buscarCiudad(codPais, codCiudad);
 	if (nodoCiudad == NULL) {
-		cout << endl << "Ciudad Invalida o No Registrada" << endl;
-		system("pause");
-		return;
+		return "Ciudad Invalida o No Registrada";
 	}
 	if (nodoCiudad->getRest() == NULL) {
-		cout << endl << "No hay restaurantes registrados." << endl;
-		system("pause");
-		return;
+		return "No hay restaurantes registrados.";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Rest(codPais, codCiudad);
-	cout << endl << endl << "Ingrese el codigo del restaurante: ";
-	int codRest;
-	cin >> codRest;
-	cout << endl;
 	pnodoRest nodoRest = baseDeDatos.buscarRest(codPais, codCiudad, codRest);
 	if (nodoRest == NULL) {
-		cout << endl << "Restaurante Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Restaurante Invalido o No Registrado";
 	}
 	if (nodoRest->getMenu() == NULL) {
-		cout << endl << "No hay menus registrados." << endl;
-		system("pause");
-		return;
+		return "No hay menus registrados.";
 	}
-	system("cls");
-	cout << baseDeDatos.imprimir_Menu(codPais, codCiudad, codRest);
-	cout << endl << endl << "Ingrese el codigo del menu: ";
-	int codMenu;
-	cin >> codMenu;
-	cout << endl;
 	pnodoMenu nodoMenu = baseDeDatos.buscarMenu(codPais, codCiudad, codRest, codMenu);
 	if (nodoRest == NULL) {
-		cout << endl << "Menu Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Menu Invalido o No Registrado";
 	}
 	if (nodoRest->getMenu() == NULL) {
-		cout << endl << "No hay productos registrados." << endl;
-		system("pause");
-		return;
+		return "No hay productos registrados.";
 	}
-	system("cls");
-	//baseDeDatos.imprimir_Producto(codPais,  codCiudad, codRest, codMenu);
-	cout << endl << endl << "Ingrese el codigo del producto: ";
-	int codProducto;
-	cin >> codProducto;
-	cout << endl;
 	pnodoProducto nodoProducto = baseDeDatos.buscarProducto(codPais, codCiudad, codRest, codMenu, codProducto);
 	if (nodoRest == NULL) {
-		cout << endl << "Producto Invalido o No Registrado" << endl;
-		system("pause");
-		return;
+		return "Producto Invalido o No Registrado";
 	}
 	string nombreProducto = nodoProducto->getNombre();
-	guardarEnArchivo("Cantidad del producto " + nombreProducto + ".txt", "Cantidad del producto: " + to_string(nodoProducto->getcantidad()));
+	return guardarEnArchivo("Cantidad del producto " + nombreProducto + ".txt", "La cantidad del producto es: " + to_string(nodoProducto->getcantidad()));
 }
 
-void Controller::reportarComprasCliente() {
-	system("cls");
-	cout << "****************************** COMPRAS DE UN CLIENTE ******************************" << endl << endl;
-	cout << endl << "Ingrese la cedula del cliente a buscar: ";
-	int cedula;
-	cin >> cedula;
-
+string Controller::reportarComprasCliente(int cedula) {
 	puntero_Cliente Pagina_Cliente = clientes.buscarCliente(cedula);
 	if (Pagina_Cliente != NULL) {
-		system("cls");
-
 		pnodoFila cliente = listaClientes.buscar(cedula);
 		if (cliente == NULL) {
 			int indice = Pagina_Cliente->getIndice(cedula);
-			guardarEnArchivo("Compras de un Cliente.txt", "	COMPRAS DE UN CLIENTE\n	" + Pagina_Cliente->getNombre(indice) + " no ha comprado todavia. ");
+			return guardarEnArchivo("Compras de un Cliente.txt", "	COMPRAS DE UN CLIENTE\n	" + Pagina_Cliente->getNombre(indice) + " no ha comprado todavia. ");
 		}
 		else {
-			guardarEnArchivo("Compras de un Cliente.txt", "	COMPRAS DE UN CLIENTE\n	" + cliente->nombreCliente + " ha comprado un total de " + to_string(cliente->lugar) + " veces.");
+			return guardarEnArchivo("Compras de un Cliente.txt", "	COMPRAS DE UN CLIENTE\n	" + cliente->nombreCliente + " ha comprado un total de " + to_string(cliente->lugar) + " veces.");
 		}
 	}
 	else {
-		cout << endl << "Este codigo no se encuentra registrado." << endl;
-		system("pause");
+		return "Este codigo no se encuentra registrado.";
 	}
 }
 
-void Controller::reportarProductoMasComprado() {
-	system("cls");
-	cout << "****************************** PRODUCTO MAS COMPRADO ******************************" << endl << endl;
+string Controller::reportarProductoMasComprado() {
 	string texto = "	PRODUCTO MAS COMPRADO\t\t";
 	if (productomasComp == NULL) {
-		cout << "No han habido compras" << endl;
-		system("pause");
-		return;
+		return "No han habido compras";
 	}
 	texto += "\n	Nombre: " + productomasComp->getNombre() + " - Codigo: " + to_string(productomasComp->getcodProducto()) + " - Cantidad: " + to_string(productomasComp->getcomprado());
 
-	guardarEnArchivo("Producto Mas Comprado.txt", texto);
+	return guardarEnArchivo("Producto Mas Comprado.txt", texto);
 }
 
-void Controller::reportes() {
+/*void Controller::reportes() {
 	bool bandera = true;
 	do {
 		system("cls");
@@ -1931,7 +1773,7 @@ void Controller::reportes() {
 			break;
 		}
 	} while (bandera);
-}
+}*/
 
 bool Controller::isInteger(const string str) {
 	try {
