@@ -39,9 +39,9 @@ class Controller {
 		}
 		//Menu
 		void lecturaArchivos();
-		void reportes();
+		//void reportes();
 		string comprar(int cedula, int codPais, int codCiudad, int codRest, int codMenu, int codProd, int cantidad, int lugar);
-		void pagar();
+		string pagar(int opcion);
 		
 		//Insertar
 		string insertarPais(int codPais, string nombre);

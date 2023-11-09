@@ -1255,32 +1255,20 @@ string Controller::comprar(int cedula,int codPais, int codCiudad, int codRest, i
 	}
 }
 
-void Controller::pagar() {
-	system("cls");
+string Controller::pagar(int opcion) {
+	/*system("cls");
 	cout << "****************************** PAGAR ******************************" << endl;
-
+	*/
 	if (colaClientes.ListaVacia()) {
-		cout << endl << "La cola esta vacia, primero haga fila." << endl;
-		system("pause");
-		return;
+		/*cout << endl << "La cola esta vacia, primero haga fila." << endl;
+		system("pause");*/
+		return "La cola esta vacia, primero haga fila.";
 	}
-	//	
-	//	cout<<endl<<"Ingrese su numero de cedula: ";
-	//	int cedula;
-	//	cin>>cedula;
-	//	
-	//	puntero_Cliente nodoClientes = clientes.buscarCliente(cedula);
-	//	
-	//	if(colaClientes.buscar(cedula)==NULL){
-	//		cout<<endl<<"El cliente no esta en la cola."<<endl;
-	//		system("pause");
-	//		return;
-	//	}
-	//	
-	bool bandera = true;
+
+/*	bool bandera = true;
 	do {
-		pnodoFila clienteFila = colaClientes.primero;
-		system("cls");
+		*/pnodoFila clienteFila = colaClientes.primero;
+		/*system("cls");
 		cout << endl << clienteFila->nombreCliente << " desea facturar?" << endl;
 		cout << "1.Si" << endl;
 		cout << "2.No" << endl;
@@ -1289,32 +1277,32 @@ void Controller::pagar() {
 		cin >> opcion;
 		switch (opcion) {
 		case 1:
-		{
-			bool bandera2 = true;
+		{*/
+			//bool bandera2 = true;
 			int desc = 0;
-			do {
-				system("cls");
+			//do {
+				/*system("cls");
 				cout << endl << "Con que desea pagar?" << endl;
 				cout << "1.Tarjeta" << endl;
 				cout << "2.Efectivo" << endl;
 				cout << endl << "-->";
 				int opcion2;
-				cin >> opcion2;
-				switch (opcion2) {
+				cin >> opcion2;*/
+				switch (opcion) {
 				case 1:
 					desc = 3;
-					bandera2 = false;
+					//bandera2 = false;
 					break;
 				case 2:
 					desc = 1;
-					bandera2 = false;
+					//bandera2 = false;
 					break;
 				default:
-					cout << "Ingrese un numero valido" << endl;
-					system("pause");
-
+					/*cout << "Ingrese un numero valido" << endl;
+					system("pause");*/
+					return "Ingrese una opcion valida";
 				}
-			} while (bandera2 == true);
+			//} while (bandera2 == true);
 			string facturaTexto;
 			facturaTexto = clienteFila->factura();
 			facturaTexto += "	---------------------------------------------------\n	";
@@ -1350,11 +1338,11 @@ void Controller::pagar() {
 				menorFactura = total;
 				menorFacturastring = facturaTexto;
 			}
-			guardarEnArchivo(to_string(clienteFila->cedula) + "_" + to_string(facturas + 1) + ".txt", facturaTexto);
+			return guardarEnArchivo(to_string(clienteFila->cedula) + "_" + to_string(facturas + 1) + ".txt", facturaTexto);
 			//				cout<<endl<<endl<<"Se ha generado la factura en "<<to_string(clienteFila->cedula)<<"_"<<to_string(facturas+1)<<".txt"<<endl;
 			facturas++;
 			colaClientes.BorrarInicio();
-		}
+		/* }
 		bandera = false;
 		break;
 		case 2:
@@ -1365,7 +1353,7 @@ void Controller::pagar() {
 			system("pause");
 
 		}
-	} while (bandera == true);
+	} while (bandera == true);*/
 }
 
 //*************** REPORTES **************************

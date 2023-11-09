@@ -176,6 +176,49 @@ private: System::Windows::Forms::ToolStripMenuItem^ menúsEliminadosToolStripMenu
 private: System::Windows::Forms::ToolStripMenuItem^ menúsEliminadosToolStripMenuItem1;
 private: System::Windows::Forms::ToolStripMenuItem^ paisesEliminadosToolStripMenuItem;
 private: System::Windows::Forms::Button^ generarReporte;
+private: System::Windows::Forms::Panel^ FacturarPanel;
+private: System::Windows::Forms::RadioButton^ radioBtnTarjeta;
+private: System::Windows::Forms::RadioButton^ radioBtnEfectivo;
+
+
+
+private: System::Windows::Forms::Label^ label1;
+private: System::Windows::Forms::Button^ FacturarButton;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -277,6 +320,10 @@ private: System::Windows::Forms::Button^ generarReporte;
 			this->contactoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->cerrarSesiónToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->PanelMantenimiento = (gcnew System::Windows::Forms::Panel());
+			this->FacturarPanel = (gcnew System::Windows::Forms::Panel());
+			this->radioBtnTarjeta = (gcnew System::Windows::Forms::RadioButton());
+			this->radioBtnEfectivo = (gcnew System::Windows::Forms::RadioButton());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->generarReporte = (gcnew System::Windows::Forms::Button());
 			this->ComprarPanel = (gcnew System::Windows::Forms::Panel());
 			this->LlevarRadioButton = (gcnew System::Windows::Forms::RadioButton());
@@ -307,8 +354,10 @@ private: System::Windows::Forms::Button^ generarReporte;
 			this->CiudadLabelMante = (gcnew System::Windows::Forms::Label());
 			this->PaisMante = (gcnew System::Windows::Forms::TextBox());
 			this->PaisLabelMante = (gcnew System::Windows::Forms::Label());
+			this->FacturarButton = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1->SuspendLayout();
 			this->PanelMantenimiento->SuspendLayout();
+			this->FacturarPanel->SuspendLayout();
 			this->ComprarPanel->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -393,7 +442,7 @@ private: System::Windows::Forms::Button^ generarReporte;
 					this->clienteToolStripMenuItem, this->administradorToolStripMenuItem, this->compraToolStripMenuItem
 			});
 			this->insertarToolStripMenuItem->Name = L"insertarToolStripMenuItem";
-			this->insertarToolStripMenuItem->Size = System::Drawing::Size(125, 22);
+			this->insertarToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->insertarToolStripMenuItem->Text = L"Insertar";
 			// 
 			// paísToolStripMenuItem
@@ -460,7 +509,7 @@ private: System::Windows::Forms::Button^ generarReporte;
 					this->clienteToolStripMenuItem1, this->administradorToolStripMenuItem1
 			});
 			this->consultaToolStripMenuItem->Name = L"consultaToolStripMenuItem";
-			this->consultaToolStripMenuItem->Size = System::Drawing::Size(125, 22);
+			this->consultaToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->consultaToolStripMenuItem->Text = L"Consulta";
 			// 
 			// paísesToolStripMenuItem
@@ -520,7 +569,7 @@ private: System::Windows::Forms::Button^ generarReporte;
 					this->clienteToolStripMenuItem2, this->administradorToolStripMenuItem2, this->compraToolStripMenuItem1
 			});
 			this->modificarToolStripMenuItem->Name = L"modificarToolStripMenuItem";
-			this->modificarToolStripMenuItem->Size = System::Drawing::Size(125, 22);
+			this->modificarToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->modificarToolStripMenuItem->Text = L"Modificar";
 			// 
 			// paísesToolStripMenuItem1
@@ -586,7 +635,7 @@ private: System::Windows::Forms::Button^ generarReporte;
 					this->clienteToolStripMenuItem3, this->administradorToolStripMenuItem3, this->compraToolStripMenuItem2
 			});
 			this->eliminarToolStripMenuItem->Name = L"eliminarToolStripMenuItem";
-			this->eliminarToolStripMenuItem->Size = System::Drawing::Size(125, 22);
+			this->eliminarToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->eliminarToolStripMenuItem->Text = L"Eliminar";
 			// 
 			// paisToolStripMenuItem
@@ -662,7 +711,7 @@ private: System::Windows::Forms::Button^ generarReporte;
 					this->ciudadesToolStripMenuItem2, this->restaurantesToolStripMenuItem2, this->clientesToolStripMenuItem
 			});
 			this->árbolesToolStripMenuItem->Name = L"árbolesToolStripMenuItem";
-			this->árbolesToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->árbolesToolStripMenuItem->Size = System::Drawing::Size(132, 22);
 			this->árbolesToolStripMenuItem->Text = L"Árboles";
 			// 
 			// paísToolStripMenuItem1
@@ -700,7 +749,7 @@ private: System::Windows::Forms::Button^ generarReporte;
 					this->productoMásCompradoToolStripMenuItem, this->facturaDeMayorMontoToolStripMenuItem, this->facturaDeMenorMontoToolStripMenuItem
 			});
 			this->comprasToolStripMenuItem->Name = L"comprasToolStripMenuItem";
-			this->comprasToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->comprasToolStripMenuItem->Size = System::Drawing::Size(132, 22);
 			this->comprasToolStripMenuItem->Text = L"Compras";
 			// 
 			// comprasDeUnClienteToolStripMenuItem
@@ -738,7 +787,7 @@ private: System::Windows::Forms::Button^ generarReporte;
 					this->mToolStripMenuItem
 			});
 			this->búsquedasToolStripMenuItem->Name = L"búsquedasToolStripMenuItem";
-			this->búsquedasToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->búsquedasToolStripMenuItem->Size = System::Drawing::Size(132, 22);
 			this->búsquedasToolStripMenuItem->Text = L"Búsquedas";
 			// 
 			// restauranteMásBuscadoToolStripMenuItem
@@ -762,7 +811,7 @@ private: System::Windows::Forms::Button^ generarReporte;
 					this->descuentoAplicadoPorPagoDeTarjetaToolStripMenuItem, this->cantidadDeUnProductoToolStripMenuItem
 			});
 			this->consultasToolStripMenuItem->Name = L"consultasToolStripMenuItem";
-			this->consultasToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->consultasToolStripMenuItem->Size = System::Drawing::Size(132, 22);
 			this->consultasToolStripMenuItem->Text = L"Consultas";
 			// 
 			// precioDeUnProductoToolStripMenuItem
@@ -794,7 +843,7 @@ private: System::Windows::Forms::Button^ generarReporte;
 					this->paisesEliminadosToolStripMenuItem
 			});
 			this->eliminadosToolStripMenuItem->Name = L"eliminadosToolStripMenuItem";
-			this->eliminadosToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->eliminadosToolStripMenuItem->Size = System::Drawing::Size(132, 22);
 			this->eliminadosToolStripMenuItem->Text = L"Eliminados";
 			// 
 			// productosEliminadosToolStripMenuItem
@@ -837,6 +886,7 @@ private: System::Windows::Forms::Button^ generarReporte;
 			this->facturaciónToolStripMenuItem->Name = L"facturaciónToolStripMenuItem";
 			this->facturaciónToolStripMenuItem->Size = System::Drawing::Size(81, 22);
 			this->facturaciónToolStripMenuItem->Text = L"Facturación";
+			this->facturaciónToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::facturaciónToolStripMenuItem_Click);
 			// 
 			// acercaDeToolStripMenuItem
 			// 
@@ -859,6 +909,8 @@ private: System::Windows::Forms::Button^ generarReporte;
 			// 
 			// PanelMantenimiento
 			// 
+			this->PanelMantenimiento->Controls->Add(this->FacturarButton);
+			this->PanelMantenimiento->Controls->Add(this->FacturarPanel);
 			this->PanelMantenimiento->Controls->Add(this->generarReporte);
 			this->PanelMantenimiento->Controls->Add(this->ComprarPanel);
 			this->PanelMantenimiento->Controls->Add(this->ModificarButton);
@@ -891,6 +943,46 @@ private: System::Windows::Forms::Button^ generarReporte;
 			this->PanelMantenimiento->Size = System::Drawing::Size(745, 283);
 			this->PanelMantenimiento->TabIndex = 9;
 			this->PanelMantenimiento->Visible = false;
+			// 
+			// FacturarPanel
+			// 
+			this->FacturarPanel->Controls->Add(this->radioBtnTarjeta);
+			this->FacturarPanel->Controls->Add(this->radioBtnEfectivo);
+			this->FacturarPanel->Controls->Add(this->label1);
+			this->FacturarPanel->Location = System::Drawing::Point(238, 216);
+			this->FacturarPanel->Name = L"FacturarPanel";
+			this->FacturarPanel->Size = System::Drawing::Size(172, 57);
+			this->FacturarPanel->TabIndex = 28;
+			// 
+			// radioBtnTarjeta
+			// 
+			this->radioBtnTarjeta->AutoSize = true;
+			this->radioBtnTarjeta->Location = System::Drawing::Point(9, 10);
+			this->radioBtnTarjeta->Name = L"radioBtnTarjeta";
+			this->radioBtnTarjeta->Size = System::Drawing::Size(108, 17);
+			this->radioBtnTarjeta->TabIndex = 21;
+			this->radioBtnTarjeta->TabStop = true;
+			this->radioBtnTarjeta->Text = L"Pago Con Tarjeta";
+			this->radioBtnTarjeta->UseVisualStyleBackColor = true;
+			// 
+			// radioBtnEfectivo
+			// 
+			this->radioBtnEfectivo->AutoSize = true;
+			this->radioBtnEfectivo->Location = System::Drawing::Point(9, 29);
+			this->radioBtnEfectivo->Name = L"radioBtnEfectivo";
+			this->radioBtnEfectivo->Size = System::Drawing::Size(108, 17);
+			this->radioBtnEfectivo->TabIndex = 20;
+			this->radioBtnEfectivo->TabStop = true;
+			this->radioBtnEfectivo->Text = L"Pago En Efectivo";
+			this->radioBtnEfectivo->UseVisualStyleBackColor = true;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(54, 37);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(0, 13);
+			this->label1->TabIndex = 19;
 			// 
 			// generarReporte
 			// 
@@ -1156,6 +1248,16 @@ private: System::Windows::Forms::Button^ generarReporte;
 			this->PaisLabelMante->TabIndex = 0;
 			this->PaisLabelMante->Text = L"Código País";
 			// 
+			// FacturarButton
+			// 
+			this->FacturarButton->Location = System::Drawing::Point(416, 250);
+			this->FacturarButton->Name = L"FacturarButton";
+			this->FacturarButton->Size = System::Drawing::Size(86, 23);
+			this->FacturarButton->TabIndex = 29;
+			this->FacturarButton->Text = L"Facturar";
+			this->FacturarButton->UseVisualStyleBackColor = true;
+			this->FacturarButton->Click += gcnew System::EventHandler(this, &MyForm::FacturarButton_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -1177,6 +1279,8 @@ private: System::Windows::Forms::Button^ generarReporte;
 			this->menuStrip1->PerformLayout();
 			this->PanelMantenimiento->ResumeLayout(false);
 			this->PanelMantenimiento->PerformLayout();
+			this->FacturarPanel->ResumeLayout(false);
+			this->FacturarPanel->PerformLayout();
 			this->ComprarPanel->ResumeLayout(false);
 			this->ComprarPanel->PerformLayout();
 			this->ResumeLayout(false);
@@ -1268,6 +1372,7 @@ private: System::Void restauranteToolStripMenuItem_Click(System::Object^ sender,
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void paísToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->TextoBuscar->Visible = false;
@@ -1299,7 +1404,8 @@ private: System::Void paísToolStripMenuItem_Click(System::Object^ sender, System
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
-	
+	this->FacturarPanel->Visible = false;
+
 }
 private: System::Void InsertarDatosMante_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->EstadoLabelMante->Text = "";
@@ -1524,6 +1630,7 @@ private: System::Void ciudadToolStripMenuItem_Click(System::Object^ sender, Syst
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void cerrarSesiónToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->PanelMantenimiento->Visible = false;
@@ -1570,6 +1677,7 @@ private: System::Void menúToolStripMenuItem_Click(System::Object^ sender, System
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void productoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->TextoBuscar->Visible = false;
@@ -1601,6 +1709,7 @@ private: System::Void productoToolStripMenuItem_Click(System::Object^ sender, Sy
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void clienteToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->TextoBuscar->Visible = false;
@@ -1632,6 +1741,7 @@ private: System::Void clienteToolStripMenuItem_Click(System::Object^ sender, Sys
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void administradorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->TextoBuscar->Visible = false;
@@ -1663,6 +1773,7 @@ private: System::Void administradorToolStripMenuItem_Click(System::Object^ sende
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void compraToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionInsertar = 8;
@@ -1699,6 +1810,7 @@ private: System::Void compraToolStripMenuItem_Click(System::Object^ sender, Syst
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void BuscarButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->TextoBuscar->Text = "";
@@ -1875,6 +1987,7 @@ private: System::Void paísesToolStripMenuItem_Click(System::Object^ sender, Syst
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void ciudadesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->TextoBuscar->Visible = true;
@@ -1906,6 +2019,7 @@ private: System::Void ciudadesToolStripMenuItem_Click(System::Object^ sender, Sy
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 
 }
 private: System::Void restaurantesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1938,6 +2052,7 @@ private: System::Void restaurantesToolStripMenuItem_Click(System::Object^ sender
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void menúToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionConsultar = 4;
@@ -1974,6 +2089,7 @@ private: System::Void menúToolStripMenuItem1_Click(System::Object^ sender, Syste
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void productosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionConsultar = 5;
@@ -2010,6 +2126,7 @@ private: System::Void productosToolStripMenuItem_Click(System::Object^ sender, S
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void menuStrip1_ItemClicked(System::Object^ sender, System::Windows::Forms::ToolStripItemClickedEventArgs^ e) {
 }
@@ -2049,6 +2166,7 @@ private: System::Void clienteToolStripMenuItem1_Click(System::Object^ sender, Sy
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void administradorToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionConsultar = 7;
@@ -2085,6 +2203,7 @@ private: System::Void administradorToolStripMenuItem1_Click(System::Object^ send
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 
 private: System::Void ModificarButton_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -2316,6 +2435,7 @@ private: System::Void paísesToolStripMenuItem1_Click(System::Object^ sender, Sys
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = true;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void ciudadesToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionModificar = 2;
@@ -2352,6 +2472,7 @@ private: System::Void ciudadesToolStripMenuItem1_Click(System::Object^ sender, S
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = true;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void restaurantesToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionModificar = 3;
@@ -2388,6 +2509,7 @@ private: System::Void restaurantesToolStripMenuItem1_Click(System::Object^ sende
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = true;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 
 private: System::Void menúToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -2425,6 +2547,7 @@ private: System::Void menúToolStripMenuItem2_Click(System::Object^ sender, Syste
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = true;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void productoToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionModificar = 5;
@@ -2461,6 +2584,7 @@ private: System::Void productoToolStripMenuItem1_Click(System::Object^ sender, S
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = true;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void clienteToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionModificar = 6;
@@ -2497,6 +2621,7 @@ private: System::Void clienteToolStripMenuItem2_Click(System::Object^ sender, Sy
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = true;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void administradorToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionModificar = 7;
@@ -2533,6 +2658,7 @@ private: System::Void administradorToolStripMenuItem2_Click(System::Object^ send
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = true;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void EliminarButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->TextoBuscar->Text = "";
@@ -2728,6 +2854,7 @@ private: System::Void paisToolStripMenuItem_Click(System::Object^ sender, System
 	this->EliminarButton->Visible = true;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void ciudadToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->TextoBuscar->Visible = true;
@@ -2759,6 +2886,7 @@ private: System::Void ciudadToolStripMenuItem1_Click(System::Object^ sender, Sys
 	this->EliminarButton->Visible = true;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void restauranteToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->TextoBuscar->Visible = true;
@@ -2790,6 +2918,7 @@ private: System::Void restauranteToolStripMenuItem1_Click(System::Object^ sender
 	this->EliminarButton->Visible = true;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void menúToolStripMenuItem3_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionEliminar = 4;
@@ -2826,6 +2955,7 @@ private: System::Void menúToolStripMenuItem3_Click(System::Object^ sender, Syste
 	this->EliminarButton->Visible = true;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void productoToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionEliminar = 5;
@@ -2862,6 +2992,7 @@ private: System::Void productoToolStripMenuItem2_Click(System::Object^ sender, S
 	this->EliminarButton->Visible = true;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void clienteToolStripMenuItem3_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionEliminar = 6;
@@ -2898,6 +3029,7 @@ private: System::Void clienteToolStripMenuItem3_Click(System::Object^ sender, Sy
 	this->EliminarButton->Visible =  true;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void administradorToolStripMenuItem3_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionEliminar = 7;
@@ -2934,6 +3066,7 @@ private: System::Void administradorToolStripMenuItem3_Click(System::Object^ send
 	this->EliminarButton->Visible = true;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 private: System::Void compraToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->opcionEliminar = 8;
@@ -2970,6 +3103,7 @@ private: System::Void compraToolStripMenuItem2_Click(System::Object^ sender, Sys
 	this->EliminarButton->Visible = true;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = false;
 }
 
 
@@ -3277,6 +3411,7 @@ private: System::Void paísToolStripMenuItem1_Click(System::Object^ sender, Syste
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3315,6 +3450,7 @@ private: System::Void ciudadesToolStripMenuItem2_Click(System::Object^ sender, S
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3353,6 +3489,7 @@ private: System::Void restaurantesToolStripMenuItem2_Click(System::Object^ sende
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3391,6 +3528,7 @@ private: System::Void clientesToolStripMenuItem_Click(System::Object^ sender, Sy
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3434,6 +3572,7 @@ private: System::Void comprasDeUnClienteToolStripMenuItem_Click(System::Object^ 
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3472,6 +3611,7 @@ private: System::Void productoMásCompradoToolStripMenuItem_Click(System::Object^
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3510,6 +3650,7 @@ private: System::Void facturaDeMayorMontoToolStripMenuItem_Click(System::Object^
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3548,6 +3689,7 @@ private: System::Void facturaDeMenorMontoToolStripMenuItem_Click(System::Object^
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3592,6 +3734,7 @@ private: System::Void restauranteMásBuscadoToolStripMenuItem_Click(System::Objec
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3630,6 +3773,7 @@ private: System::Void mToolStripMenuItem_Click(System::Object^ sender, System::E
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3673,6 +3817,7 @@ private: System::Void precioDeUnProductoToolStripMenuItem_Click(System::Object^ 
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3711,6 +3856,7 @@ private: System::Void descuentoAplicadoPorPagoDeTarjetaToolStripMenuItem_Click(S
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3749,6 +3895,7 @@ private: System::Void cantidadDeUnProductoToolStripMenuItem_Click(System::Object
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3792,6 +3939,7 @@ private: System::Void productosEliminadosToolStripMenuItem_Click(System::Object^
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3830,6 +3978,7 @@ private: System::Void restaurantesEliminadosToolStripMenuItem_Click(System::Obje
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3868,6 +4017,7 @@ private: System::Void menúsEliminadosToolStripMenuItem_Click(System::Object^ sen
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3906,6 +4056,7 @@ private: System::Void menúsEliminadosToolStripMenuItem1_Click(System::Object^ se
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
@@ -3944,8 +4095,83 @@ private: System::Void paisesEliminadosToolStripMenuItem_Click(System::Object^ se
 	this->EliminarButton->Visible = false;
 	this->ModificarButton->Visible = false;
 	this->generarReporte->Visible = true;
+	this->FacturarPanel->Visible = false;
 
 	this->TextoBuscar->Text = "";
 }
+
+
+private: System::Void facturaciónToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->opcionReporte = 18;
+
+	this->TextoBuscar->Visible = true;
+
+	this->PanelMantenimiento->Visible = true;
+	this->ComprarPanel->Visible = false;
+
+	this->PaisMante->Visible = false;
+	this->CiudadMante->Visible = false;
+	this->RestMante->Visible = false;
+	this->MenuMante->Visible = false;
+	this->ProductoMante->Visible = false;
+	this->CaloriasMante->Visible = false;
+	this->PrecioMante->Visible = false;
+	this->CantidadMante->Visible = false;
+	this->CedulaMante->Visible = false;
+	this->NombreMante->Visible = false;
+
+	this->PaisLabelMante->Visible = false;
+	this->CiudadLabelMante->Visible = false;
+	this->RestLabelMante->Visible = false;
+	this->MenuLabelMante->Visible = false;
+	this->ProductoLabelMante->Visible = false;
+	this->CaloriasLabelMante->Visible = false;
+	this->PrecioLabelMante->Visible = false;
+	this->CantidadLabelMante->Visible = false;
+	this->CedulaLabel->Visible = false;
+	this->NombreLabelMante->Visible = false;
+
+	this->InsertarDatosMante->Visible = false;
+	this->BuscarButton->Visible = false;
+	this->EliminarButton->Visible = false;
+	this->ModificarButton->Visible = false;
+	this->generarReporte->Visible = false;
+	this->FacturarPanel->Visible = true;
+
+	this->TextoBuscar->Text = "";
+}
+
+private: System::Void FacturarButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	//this->EstadoLabelMante->Text = "";
+	String^ msj;
+	string mensaje;
+	//if (this->LlevarRadioButton->Checked == true || this->ComerAcaRadioButton->Checked == true) {
+		if (this->LlevarRadioButton->Checked == true && this->ComerAcaRadioButton->Checked == true) {
+			this->TextoBuscar->Text = "Seleccione solo una opción";
+		}
+		else {
+			//if (controller->isInteger(pais) && controller->isInteger(ciudad) && controller->isInteger(rest) && controller->isInteger(menu) && controller->isInteger(producto) && controller->isInteger(cedula) && controller->isInteger(cantidad)) {
+				if (this->LlevarRadioButton->Checked == true) {
+					mensaje = controller->pagar(1);
+
+				}
+				else {
+					mensaje = controller->pagar(2);
+
+				}
+				msj = gcnew String(mensaje.c_str());
+				this->TextoBuscar->Text = msj;
+			/* }
+			else {
+				this->TextoBuscar->Text = "Ingrese datos correctos.";
+			}*/
+		}
+	//}
+	//else {
+	//	this->TextoBuscar->Text = "Seleccione alguna opcion";
+	//}
+}
+
+
 };
 }
