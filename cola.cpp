@@ -260,7 +260,6 @@ pnodoFila cola::buscar(int cedula)
 			}
 			aux=aux->siguiente;
 		}
-		cout << endl;
 		
    }
    return NULL;

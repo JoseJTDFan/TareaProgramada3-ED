@@ -28,7 +28,7 @@ int lista::largoLista() {
         cout << endl;
     }
 
-}
+} 
 
 void lista::InsertarInicio(int codPais, int codCiudad, int codRest, int codMenu, string nombre, int cantidad)
 {
@@ -47,6 +47,75 @@ void lista::InsertarInicio(int codPais, int codCiudad, int codRest, int codMenu,
 
 
     }
+}
+
+void lista::eliminar(int cedula) {
+        pnodoM actual = primero;
+        pnodoM anterior = nullptr;
+
+        // Buscar el nodo con el valor deseado
+        while (actual && actual->codCiudad != cedula) {
+            anterior = actual;
+            actual = actual->siguiente;
+        }
+
+        // Verificar si se encontró el nodo
+        if (actual != nullptr) {
+            // Si el nodo a eliminar es el primero
+            if (anterior == nullptr) {
+                primero = actual->siguiente;
+            }
+            else {
+                // Si el nodo a eliminar no es el primero
+                anterior->siguiente = actual->siguiente;
+            }
+
+            // Liberar la memoria del nodo eliminado
+            delete actual;
+        }
+}
+
+string lista::imprimir() {
+    if (primero == NULL) {
+        return "No hay nodos eliminados";
+    }
+    pnodoM aux = primero;
+    string texto;
+    while (aux) {
+        if (aux->codCiudad == -1 && aux->codRest == -1 && aux->codMenu == -1 && aux->cantidad == -1) {
+            texto += to_string(aux->codPais)+ " - ";
+            texto += aux->nombre + "\n";
+        }
+        else if (aux->codRest == -1 && aux->codMenu == -1 && aux->cantidad == -1) {
+            texto += to_string(aux->codPais) + " - ";
+            texto += to_string(aux->codCiudad) + " - ";
+            texto += aux->nombre + "\n";
+        }
+        else if (aux->codMenu == -1 && aux->cantidad == -1) {
+            texto += to_string(aux->codPais) + " - ";
+            texto += to_string(aux->codCiudad) + " - ";
+            texto += to_string(aux->codRest) + " - ";
+            texto += aux->nombre + "\n";
+        }
+        else if (aux->cantidad == -1) {
+            texto += to_string(aux->codPais) + " - ";
+            texto += to_string(aux->codCiudad) + " - ";
+            texto += to_string(aux->codRest) + " - ";
+            texto += to_string(aux->codMenu) + " - ";
+            texto += aux->nombre + "\n";
+        }
+        else {
+            texto += to_string(aux->codPais) + " - ";
+            texto += to_string(aux->codCiudad) + " - ";
+            texto += to_string(aux->codRest) + " - ";
+            texto += to_string(aux->codMenu) + " - ";
+            texto += to_string(aux->cantidad) + " - ";
+            texto += aux->nombre + "\n";
+        }
+        aux = aux->siguiente;
+    }
+    return texto;
+
 }
 
 pnodoM lista::buscar(int codPais, int codCiudad, int codRest, int codMenu)
@@ -68,6 +137,47 @@ pnodoM lista::buscar(int codPais, int codCiudad, int codRest, int codMenu)
 
     }
     return NULL;
+}
+
+bool  lista::buscarPersona(int cedula) {
+    nodoM* aux;
+    if (primero == NULL)
+        return false;
+    else
+    {
+        aux = primero;
+        while (aux)
+        {
+            if (aux->codCiudad == cedula) {
+                return true;
+            }
+            aux = aux->siguiente;
+        }
+    }
+    return false;
+}
+
+string  lista::imprimirPersona() {
+    nodoM* aux;
+    string texto = "khe\n";
+    if (primero == NULL)
+        return texto;
+    else
+    {
+
+        aux = primero;
+        while (aux)
+        {
+            texto += to_string(aux->codPais) + " - ";
+            texto += to_string(aux->codCiudad) + " - ";
+            texto += to_string(aux->codRest) + " - ";
+            texto += to_string(aux->codMenu) + " - ";
+            texto += aux->nombre + " - ";
+            texto += to_string(aux->cantidad) + "\n";
+            aux = aux->siguiente;
+        }
+    }
+    return texto;
 }
 
 string lista::MasBuscado()

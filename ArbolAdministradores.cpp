@@ -83,6 +83,8 @@ void ArbolAdministradores::empujar_Arriba(int& pCedula, string& pNombre, puntero
 
 void ArbolAdministradores::inserta(int pCedula, string pNombre)
 {
+
+	//this->Admin.InsertarInicio(-1, pCedula, -1, -1, pNombre, -1);
 	bool empujar_Arriba = false;
 	int cedula_Aux = 0;
 	string nombre_Aux = "";
@@ -365,6 +367,10 @@ void  ArbolAdministradores::restablecer(puntero_Administradores& pRaiz, int& pIn
 
 puntero_Administradores ArbolAdministradores::buscarAdministradores(int pCedula)
 {
+	/*
+	if (this->Admin.buscarPersona(pCedula) == false) {
+		return NULL;
+	}*/
 	if (this->raiz == NULL)
 		return NULL;
 	return this->raiz->buscar(pCedula);
@@ -388,6 +394,7 @@ void ArbolAdministradores::agregar_Datos_lectura(string& pDatosLinea)
 			indiceDatos++;
 	}
 	if (!this->esta_Administradores(stoi(datos[0].c_str())))
+		
 		this->inserta(stoi(datos[0].c_str()), datos[1]);
 }
 

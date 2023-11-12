@@ -1,6 +1,8 @@
+#pragma once
 #include <iostream>
 #include "nodoM.h"
 #include "nodoR.h"
+
 
 using namespace std;
 
@@ -15,6 +17,12 @@ class lista {
     int largoLista();// retorno un valor numerico
     pnodoM buscar(int codPais, int codCiudad, int codRest, int codMenu);
     string MasBuscado();
+
+    string imprimirPersona();
+
+    void eliminar(int cedula);
+    string imprimir();
+    bool buscarPersona(int cedula);
     
     void InsertarInicioR(int codPais, int codCiudad, int codRest, string nombre, int cantidad);//No retornan nada
     pnodoR buscarR(int codPais, int codCiudad, int codRest);

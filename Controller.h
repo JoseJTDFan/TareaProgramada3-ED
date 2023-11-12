@@ -5,11 +5,12 @@
 #include <iostream>
 #include "ArbolPais.h"
 #include "ArbolClientes.h"
+#include "lista.h"
 #include "ArbolAdministradores.h"
 #include "cola.h"
 #include <cstdlib>
 #include <string.h>
-#include "lista.h"
+
 
 
 using namespace std;
@@ -69,7 +70,7 @@ class Controller {
 		string modificarProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd, string nombre, string kcal, string precio, string cantidad);
 		string modificarCliente(int cedula, string nombre);
 		string modificarAdmin(int cedula, string nombre);
-		string modificarCompra(int cedula);
+		string modificarCompra(int cedula, int opcion, int cantidad, int codPais, int codCiudad, int codRest, int codMenu, int codProd);
 		
 		//Eliminar
 
@@ -99,7 +100,14 @@ class Controller {
 		string reportarPrecio(int codPais, int codCiudad, int codRest, int codMenu, int codProd);
 		string reportarDescuento();
 		string reportarCantidadProducto(int codPais, int codCiudad, int codRest, int codMenu, int codProd);
-		
+		string reportarElimPais();
+		string reportarElimCiudad();
+		string reportarElimRest();
+		string reportarElimMenu();
+		string reportarElimProd();
+
+
+
 		//Extra
 		bool desicion(bool bandera);
 		string guardarEnArchivo(string nombreArchivo, string texto);
@@ -108,6 +116,12 @@ class Controller {
 		ArbolClientes getClientes() { return this->clientes; }
 		ArbolAdministradores getAdmin() { return this->admin; }
 		cola getColaClientes() { return this->colaClientes; }
+
+		lista PaisesBorrados;
+		lista CiudadesBorrados;
+		lista RestBorrados;
+		lista MenuBorrados;
+		lista ProdBorrados;
 
 	private:
 		ArbolClientes clientes;

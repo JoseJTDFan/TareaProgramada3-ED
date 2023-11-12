@@ -5,6 +5,8 @@
 #include <string>
 
 #include "NodoAdministradores.h"
+#include "lista.h"
+
 
 using namespace std;
 
@@ -13,6 +15,8 @@ class ArbolAdministradores {
 		puntero_Administradores raiz;
 
 	public:
+		//lista Admin;
+
 		ArbolAdministradores ();
 		bool arbol_Vacio ();
 		puntero_Administradores getRaiz ();

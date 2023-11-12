@@ -210,6 +210,9 @@ void NodoRest::insertRest (NodoRest* &nodo, bool  Hh, int codPais, int codCiudad
 
 NodoRest * NodoRest::buscarRest (int codRest) 
 {
+	if (this == NULL) {
+		return NULL;
+	}
 	if (this->codRest == codRest) {
 		return this;
 	}
